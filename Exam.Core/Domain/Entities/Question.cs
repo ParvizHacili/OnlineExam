@@ -8,11 +8,12 @@ namespace Exam.Core.Domain.Entities
     {
         public Exam Exam { get; set; }
         public string Questionn { get; set; }
-        public string A { get; set; }
-        public string B { get; set; }
-        public string C { get; set; }
-        public string D { get; set; }
-        public string E { get; set; }
+        public string VariantA { get; set; }
+        public string VariantB { get; set; }
+        public string VariantC { get; set; }
+        public string VariantD { get; set; }
+        public string VariantE { get; set; }
         public string TrueAnswer { get; set; }
+
     }
 }
