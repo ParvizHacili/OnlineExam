@@ -1,4 +1,6 @@
 ﻿using Exam.Core.Domain.Enums;
+using OnlineExamUI.ViewModels;
+using OnlineExamUI.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,6 +16,13 @@ namespace OnlineExamUI
     /// </summary>
     public partial class App : Application
     {
-        
+       
+
+        //LoginViewModel viewModel = new LoginViewModel();
+        //MainWindow = new LoginWindow();
+        //viewModel.Window = MainWindow;
+
+
+
     }
 }

@@ -6,7 +6,7 @@ namespace Exam.Core.Domain.Enums
 {
     public enum Gender
     {
+        Female,
         Male,
-        Female
     }
 }

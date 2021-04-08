@@ -11,12 +11,12 @@ namespace Exam.Core.Domain.Entities
         public string Username { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public int Password { get; set; }
+        public string Password { get; set; }
         public Gender Gender { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public DateTime BirthDate { get; set; }        
         public bool CanOperateCrm { get; set; }
-        public Enums.Type Type { get; set; }
+        public UserType Type { get; set; }
     }
 }

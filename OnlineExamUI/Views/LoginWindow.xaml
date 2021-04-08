@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OnlineExamUI.Views"
         mc:Ignorable="d"
-  Title="Giriş" Height="480" Width="500" Background="Transparent" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen">
+   Title="Giriş" Height="480" Width="500" Background="Transparent" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Border CornerRadius="12" BorderThickness="20" BorderBrush="#FF24253A" Margin="25">
         <Border.Effect>
             <DropShadowEffect BlurRadius="20" ShadowDepth="15" />
@@ -20,10 +20,12 @@
 
                 <TextBlock Text="İstifadəçi adı" Background="#FF24253A"  FontFamily="Times New Roman" FontSize="24" Foreground="#FF747474" Margin="10,0,0,0"/>
                 <TextBox Margin="10,0,0,0" BorderThickness="0"  
-                         Foreground="White" Background="#FF24253A"  FontFamily="Century Gothic" FontSize="24">
+                         Foreground="White" Background="#FF24253A"  
+                         FontFamily="Century Gothic" FontSize="24"
+                         Text="{Binding Username}">
 
                     <TextBox.InputBindings>
-                        <KeyBinding Command="{Binding Path=SignIn}" Key="Enter" />
+                        <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=PasswordTxt}" Key="Enter" />
                     </TextBox.InputBindings>
                 </TextBox>
 
@@ -38,16 +40,15 @@
                 </PasswordBox>
                 <Separator BorderBrush="#60444444" Margin="10"/>
 
-                <TextBlock Text="İstifadəçi adı və ya şifrə yanlışdır" Background="#FF24253A"    FontFamily="Times New Roman" FontSize="24" 
+                <TextBlock Visibility="{Binding Path=ErrorVisibility}" Text="İstifadəçi adı və ya şifrə yanlışdır" Background="#FF24253A"    FontFamily="Times New Roman" FontSize="24" 
                            Foreground="Red" Margin="10,0,0,10"  />
 
-                <Button Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=PasswordTxt}" Height="40" Content="Sign in" Width="120"  BorderThickness="0" BorderBrush="#60444444" IsEnabled="True" Background="#60444444">
+                <Button Height="40" Content="Sign in" Width="120"  BorderThickness="0" BorderBrush="#60444444" IsEnabled="True" Background="#60444444">
                     <Button.Template>
                         <ControlTemplate>
                             <Border VerticalAlignment="Stretch" BorderThickness="5" CornerRadius="10" BorderBrush="#FF333337" Height="auto">
                                 <Button Command="{Binding SignIn}" CommandParameter="{Binding ElementName=PasswordTxt}" FontSize="22" BorderThickness="0" 
                                         Background="#FF333337" Foreground="#FFC2C2C2" FontFamily="Century Gothic" FontWeight="Bold" Content="Daxil ol">
-
                                 </Button>
                             </Border>
                         </ControlTemplate>

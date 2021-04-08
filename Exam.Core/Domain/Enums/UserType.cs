@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Exam.Core.Domain.Enums
 {
-    public enum Type
+    public enum UserType
     {
-        Teacher,
-        Student
+        Student,
+        Teacher
     }
 }
