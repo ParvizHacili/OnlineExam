@@ -16,13 +16,11 @@ namespace OnlineExamUI
     /// </summary>
     public partial class App : Application
     {
-       
-
-        //LoginViewModel viewModel = new LoginViewModel();
-        //MainWindow = new LoginWindow();
-        //viewModel.Window = MainWindow;
-
-
-
+        public App()
+        {
+            LoginViewModel viewModel = new LoginViewModel();
+            MainWindow = new LoginWindow();
+            viewModel.Window = MainWindow;
+        }
     }
 }
