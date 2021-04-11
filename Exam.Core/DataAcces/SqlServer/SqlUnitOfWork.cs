@@ -1,6 +1,7 @@
 ﻿using Exam.Core.Domain.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Text;
 
 namespace Exam.Core.DataAcces.SqlServer
@@ -14,5 +15,22 @@ namespace Exam.Core.DataAcces.SqlServer
         }
 
         public IUserRepository UserRepository => new SqlUserRepository(context);
+
+        public bool CheckServer()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(context.ConnectionString))
+                {
+                    conn.Open();
+
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

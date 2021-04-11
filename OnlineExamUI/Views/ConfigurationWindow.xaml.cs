@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineExamUI.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -20,6 +21,26 @@ namespace OnlineExamUI.Views
         public ConfigurationWindow()
         {
             InitializeComponent();
+        }
+        private void rdbChecked(object sender, RoutedEventArgs e)
+        {
+            RadioButton button = (RadioButton)sender;
+
+            grdSqlServer.IsEnabled = button != rdbWindows;
+        }
+
+        private void btnCancelClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnSaveClick(object sender, RoutedEventArgs e)
+        {
+            ConfigurationViewModel viewModel = (ConfigurationViewModel)DataContext;
+
+            viewModel.DbSettings.SaveConfig();
+
+            Close();
         }
     }
 }

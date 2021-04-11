@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Exam.Core;
+using Newtonsoft.Json;
 using OnlineExamUI.Helpers;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace OnlineExamUI.Models
 
         public string Username { get; set; }
 
-        public string Password { get; set; }
+        public string CryptPassword { get; set; }
 
 
 
@@ -46,7 +47,7 @@ namespace OnlineExamUI.Models
                 settings = new DbSettings()
                 {
                     ServerName = "",
-                    DbName = "Exam_",
+                    DbName = "OnlineExam_",
                     IntegratedSecurity = true
                 };
 
@@ -67,7 +68,7 @@ namespace OnlineExamUI.Models
             if (!builder.IntegratedSecurity)
             {
                 builder.UserID = settings.Username;
-                //builder.Password = SecurityHelper.Decrypt(settings.CryptPassword);
+                builder.Password = SecurityHelper.Decrypt(settings.CryptPassword);
             }
 
             return builder.ConnectionString;
@@ -75,8 +76,8 @@ namespace OnlineExamUI.Models
 
         public void SaveConfig()
         {
-            //    string json = JsonConvert.SerializeObject(this);
-            //    File.WriteAllText(DBSETTINGS, json);
+            string json = JsonConvert.SerializeObject(this);
+            File.WriteAllText(DBSETTINGS, json);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Exam.Core.Domain.Abstract
 {
     public interface IUnitOfWork
     {
+        bool CheckServer();
         public IUserRepository UserRepository { get; }
 
     }
