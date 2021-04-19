@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using static OnlineExamUI.ViewModels.BaseViewModel;
 
-namespace OnlineExamUI.ViewModels.Window
+namespace OnlineExamUI.ViewModels.Windows
 {
     public class MainViewModel : BaseWindowViewModel
     {

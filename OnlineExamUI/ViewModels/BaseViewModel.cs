@@ -3,7 +3,6 @@ using System.Windows;
 
 namespace OnlineExamUI.ViewModels
 {
-
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -16,7 +15,7 @@ namespace OnlineExamUI.ViewModels
 
         public abstract class BaseWindowViewModel : BaseViewModel
         {
-            public MainWindow Window;
+            public System.Windows.Window Window;
         }
 
         public abstract class BaseControlViewModel : BaseViewModel

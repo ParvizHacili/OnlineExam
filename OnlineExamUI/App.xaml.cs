@@ -1,5 +1,5 @@
 ﻿using Exam.Core.Domain.Enums;
-using OnlineExamUI.ViewModels;
+using OnlineExamUI.ViewModels.Windows;
 using OnlineExamUI.Views;
 using System;
 using System.Collections.Generic;

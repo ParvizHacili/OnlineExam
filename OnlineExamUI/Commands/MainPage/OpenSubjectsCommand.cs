@@ -1,5 +1,6 @@
 ﻿using Exam.ViewModels.UserControls;
-using OnlineExamUI.ViewModels.Window;
+using OnlineExamUI.ViewModels.Windows;
+using OnlineExamUI.Views;
 using OnlineExamUI.Views.UserControls;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,9 @@ namespace OnlineExamUI.Commands.MainPage
             subjectsControl.DataContext = subjectsViewModel;
 
             MainWindow mainWindow = (MainWindow)mainViewModel.Window;
-            mainWindow.GrdCenter
+            
+            mainWindow.GrdCenter.Children.Clear();
+
         }
     }
 }

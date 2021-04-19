@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 
-namespace OnlineExamUI.ViewModels
+namespace OnlineExamUI.ViewModels.Windows
 {
     public class ConfigurationViewModel : BaseViewModel
     {

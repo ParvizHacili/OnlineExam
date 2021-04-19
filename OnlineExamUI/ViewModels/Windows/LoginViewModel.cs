@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows;
 using static OnlineExamUI.ViewModels.BaseViewModel;
 
-namespace OnlineExamUI.ViewModels
+namespace OnlineExamUI.ViewModels.Windows
 {
     public class LoginViewModel : BaseWindowViewModel
     {

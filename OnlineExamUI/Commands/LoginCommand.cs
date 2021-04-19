@@ -1,7 +1,7 @@
 ﻿using Exam.Core;
 using Exam.Core.Domain.Entities;
-using OnlineExamUI.ViewModels;
-using OnlineExamUI.ViewModels.Window;
+using OnlineExamUI.ViewModels.Windows;
+using OnlineExamUI.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
