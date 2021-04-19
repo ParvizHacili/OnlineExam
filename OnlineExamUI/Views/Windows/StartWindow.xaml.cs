@@ -67,7 +67,7 @@ namespace OnlineExamUI.Views
 
                 if (connectionSucceed)
                 {
-                    await Task.Delay(2500);
+                    //await Task.Delay(2500);
                     Application.Current.Dispatcher.Invoke(() =>
                     {
 

@@ -47,7 +47,7 @@ namespace OnlineExamUI.Models
                 settings = new DbSettings()
                 {
                     ServerName = "",
-                    DbName = "OnlineExam_",
+                    DbName = "Exam_",
                     IntegratedSecurity = true
                 };
 

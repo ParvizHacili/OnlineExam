@@ -14,6 +14,8 @@ namespace Exam.Core.DataAcces.SqlServer
             context = new SqlContext(connectionString);
         }
 
+        public ISubjectRepository SubjectRepository => new SqlSubjectRepository(context);
+
         public IUserRepository UserRepository => new SqlUserRepository(context);
 
         public bool CheckServer()

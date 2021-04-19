@@ -10,7 +10,9 @@ namespace OnlineExamUI.Commands
     public abstract class BaseCommand : ICommand
     {
         protected IUnitOfWork DB => Kernel.DB;
+
         public event EventHandler CanExecuteChanged;
+
 
         public virtual bool CanExecute(object parameter)
         {
@@ -18,6 +20,5 @@ namespace OnlineExamUI.Commands
         }
 
         public abstract void Execute(object parameter);
-
     }
 }

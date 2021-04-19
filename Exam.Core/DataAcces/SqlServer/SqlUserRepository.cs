@@ -9,13 +9,12 @@ using System.Text;
 
 namespace Exam.Core.DataAcces.SqlServer
 {
-    public class SqlUserRepository : BaseRepository, IUserRepository
+    public class SqlUserRepository : SqlBaseRepository, IUserRepository
     {
         public SqlUserRepository(SqlContext context) : base(context)
         {
 
         }
-       
         public User Get(string username)
         {
             using (SqlConnection connection = new SqlConnection(context.ConnectionString))

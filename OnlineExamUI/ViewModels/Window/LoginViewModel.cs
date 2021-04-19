@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
+using static OnlineExamUI.ViewModels.BaseViewModel;
 
 namespace OnlineExamUI.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : BaseWindowViewModel
     {
         public LoginCommand SignIn => new LoginCommand(this);
 
@@ -24,6 +25,5 @@ namespace OnlineExamUI.ViewModels
             }
         }
 
-        public Window Window;
     }
 }

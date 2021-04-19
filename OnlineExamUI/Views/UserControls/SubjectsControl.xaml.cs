@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,18 +11,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OnlineExamUI
+namespace OnlineExamUI.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SubjectsControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SubjectsControl : UserControl
     {
-        public MainWindow()
+        public SubjectsControl()
         {
             InitializeComponent();
         }
-
-        public object GrdCenter { get; internal set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Exam.Core;
 using Exam.Core.Domain.Entities;
 using OnlineExamUI.ViewModels;
+using OnlineExamUI.ViewModels.Window;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,8 +22,7 @@ namespace OnlineExamUI.Commands
         public override void Execute(object parameter)
         {
 
-             User user = DB.UserRepository.Get(viewModel.Username);
-           
+            User user = DB.UserRepository.Get(viewModel.Username);
 
             if (user != null)
             {
@@ -33,7 +33,12 @@ namespace OnlineExamUI.Commands
                 if (user.Password == passwordHash)
                 {
                     Kernel.CurrentUser = user;
+                    MainViewModel mainViewModel = new MainViewModel();
                     MainWindow mainWindow = new MainWindow();
+
+                    mainViewModel.Window = mainWindow;
+
+                    mainWindow.DataContext = mainViewModel;
                     mainWindow.Show();
                     viewModel.Window.Close();
                 }
