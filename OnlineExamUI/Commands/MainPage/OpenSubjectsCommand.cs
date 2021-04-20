@@ -27,6 +27,7 @@ namespace OnlineExamUI.Commands.MainPage
             MainWindow mainWindow = (MainWindow)mainViewModel.Window;
             
             mainWindow.GrdCenter.Children.Clear();
+            mainWindow.GrdCenter.Children.Add(subjectsControl);
 
         }
     }
