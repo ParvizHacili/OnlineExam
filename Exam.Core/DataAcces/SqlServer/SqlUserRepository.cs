@@ -1,8 +1,10 @@
 ﻿using Exam.Core.Domain.Abstract;
 using Exam.Core.Domain.Entities;
 using Exam.Core.Domain.Enums;
+using Extensions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -32,7 +34,7 @@ namespace Exam.Core.DataAcces.SqlServer
                     {
                         User user = new User();
 
-                        user.ID = Convert.ToInt32(reader["ID"]);
+                        user.ID = reader.GetInt32("ID");
                         user.Name = Convert.ToString(reader["Name"]);
                         user.Surname = Convert.ToString(reader["Surname"]);
                         user.Username = Convert.ToString(reader["Username"]);
