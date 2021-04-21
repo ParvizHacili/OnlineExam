@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Exam.Core\Exam.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Test\" />
+  </ItemGroup>
+
 </Project>
