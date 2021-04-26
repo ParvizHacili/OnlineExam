@@ -35,26 +35,26 @@ namespace Exam.Core.DataAcces.SqlServer
                         User user = new User();
 
                         user.ID = reader.GetInt32("ID");
-                        user.Name = Convert.ToString(reader["Name"]);
-                        user.Surname = Convert.ToString(reader["Surname"]);
-                        user.Username = Convert.ToString(reader["Username"]);
-                        user.Password = Convert.ToString(reader["Password"]);
-                        user.Gender = (Gender)Convert.ToInt32(reader["Gender"]);
-                        user.Email = Convert.ToString(reader["Email"]);
-                        user.Phone = Convert.ToString(reader["Phone"]);
-                        user.BirthDate = Convert.ToDateTime(reader["BirthDate"]);
-                        user.Type = (UserType)Convert.ToInt32(reader["Type"]);
-                        user.LastModifiedDate = Convert.ToDateTime(reader["LastModifiedDate"]);
+                        user.Name = reader.GetString("Name");
+                        user.Surname = reader.GetString("Surname");
+                        user.Username = reader.GetString("Username");
+                        user.Password = reader.GetString("Password");
+                        user.Gender = (Gender)reader.GetInt32("Gender");
+                        user.Email = reader.GetString("Email");
+                        user.Phone = reader.GetString("Phone");
+                        user.BirthDate = reader.GetDateTime("BirthDate");
+                        user.Type = (UserType)reader.GetInt32("Type");
+                        user.LastModifiedDate = reader.GetDateTime("LastModifiedDate");
 
                         if (!reader.IsDBNull(reader.GetOrdinal("CreatorID")))
                         {
                             user.Creator = new User()
                             {
-                                ID = Convert.ToInt32(reader["CreatorID"])
+                                ID = reader.GetInt32("CreatorID")
                             };
                         }
-                        user.CanOperateCrm = Convert.ToBoolean(reader["CanOperateCrm"]);
-                        user.IsDeleted = Convert.ToBoolean(reader["IsDeleted"]);
+                        user.CanOperateCrm = reader.GetBoolean("CanOperateCrm");
+                        user.IsDeleted = reader.GetBoolean("IsDeleted");
 
                         return user;
                     }

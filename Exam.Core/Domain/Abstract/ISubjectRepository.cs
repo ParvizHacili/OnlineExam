@@ -8,5 +8,7 @@ namespace Exam.Core.Domain.Abstract
     public interface ISubjectRepository
     {
         int Add(Subject subject);
+        List<Subject> Get();
+        bool Update(Subject subject);
     }
 }

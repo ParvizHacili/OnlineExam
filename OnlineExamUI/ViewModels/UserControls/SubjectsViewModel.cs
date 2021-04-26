@@ -1,7 +1,9 @@
 ﻿using OnlineExamUI.Commands.Subjects;
+using OnlineExamUI.Enums;
 using OnlineExamUI.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using static OnlineExamUI.ViewModels.BaseViewModel;
 
@@ -28,8 +30,42 @@ namespace Exam.ViewModels.UserControls
             {
                 currentSubject = value;
                 OnPropertyChanged(nameof(CurrentSubject));
+
             }
         }
+
+        private SubjectModel selectedSubject;
+        public SubjectModel SelectedSubject
+        {
+            get => selectedSubject;
+            set
+            {
+                selectedSubject = value;
+                OnPropertyChanged(nameof(SelectedSubject));
+
+                CurrentSubject = SelectedSubject?.Clone();
+                        
+                if(SelectedSubject!=null)
+                {
+                    CurrentSituation = (int)Situation.SELECTED;
+                }
+                
+
+            }
+        }
+
+
+        private ObservableCollection<SubjectModel> _subjects;
+        public ObservableCollection<SubjectModel> Subjects
+        {
+            get => _subjects;
+            set
+            {
+                _subjects = value;
+                OnPropertyChanged(nameof(Subjects));
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -42,5 +78,10 @@ namespace Exam.ViewModels.UserControls
 
         #endregion
 
+        #region private methods
+
+       
+
+        #endregion
     }
 }

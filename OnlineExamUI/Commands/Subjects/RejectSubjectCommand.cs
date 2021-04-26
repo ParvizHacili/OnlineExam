@@ -1,4 +1,6 @@
 ﻿using Exam.ViewModels.UserControls;
+using OnlineExamUI.Enums;
+using OnlineExamUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +15,9 @@ namespace OnlineExamUI.Commands.Subjects
         }
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            viewModel.SelectedSubject = null;
+            viewModel.CurrentSubject = new SubjectModel();
+            viewModel.CurrentSituation = (int)Situation.NORMAL;
         }
     }
 }
