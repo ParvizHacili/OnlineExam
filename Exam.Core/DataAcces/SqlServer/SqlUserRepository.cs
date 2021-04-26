@@ -46,7 +46,7 @@ namespace Exam.Core.DataAcces.SqlServer
                         user.Type = (UserType)reader.GetInt32("Type");
                         user.LastModifiedDate = reader.GetDateTime("LastModifiedDate");
 
-                        if (!reader.IsDBNull(reader.GetOrdinal("CreatorID")))
+                        if (!reader.IsDBNull("CreatorID"))
                         {
                             user.Creator = new User()
                             {

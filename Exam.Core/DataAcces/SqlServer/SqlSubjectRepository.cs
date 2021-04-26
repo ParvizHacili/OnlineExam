@@ -90,13 +90,15 @@ namespace Exam.Core.DataAcces.SqlServer
             subject.ID = reader.GetInt32("ID");
             subject.Name = reader.GetString("Name");
             subject.LastModifiedDate = reader.GetDateTime("LastModifiedDate");
-            if (reader.IsDBNull("CreatorID"))
+           
+            if (!reader.IsDBNull("CreatorID"))
             {
                 subject.Creator = new User()
                 {
                     ID = reader.GetInt32("ID")
                 };
             }
+            
             subject.IsDeleted = reader.GetBoolean("IsDeleted");
 
             return subject;

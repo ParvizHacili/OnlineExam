@@ -11,17 +11,16 @@ namespace Exam.ViewModels.UserControls
 {
     public class SubjectsViewModel : BaseControlViewModel
     {
-        #region Properties
         public SubjectsViewModel()
         {
 
         }
 
+        #region Properties
 
         public override string Header => "Fənlər";
 
         private SubjectModel currentSubject = new SubjectModel();
-
         public SubjectModel CurrentSubject
         {
             get => currentSubject;
@@ -30,7 +29,6 @@ namespace Exam.ViewModels.UserControls
             {
                 currentSubject = value;
                 OnPropertyChanged(nameof(CurrentSubject));
-
             }
         }
 
@@ -49,11 +47,8 @@ namespace Exam.ViewModels.UserControls
                 {
                     CurrentSituation = (int)Situation.SELECTED;
                 }
-                
-
             }
         }
-
 
         private ObservableCollection<SubjectModel> _subjects;
         public ObservableCollection<SubjectModel> Subjects

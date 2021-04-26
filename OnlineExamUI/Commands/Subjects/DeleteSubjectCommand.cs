@@ -30,7 +30,7 @@ namespace OnlineExamUI.Commands.Subjects
             dialog.DataContext = sureViewModel;
             dialog.ShowDialog();
 
-            if(dialog.DialogResult==true)
+            if (dialog.DialogResult == true)
             {
                 SubjectMapper mapper = new SubjectMapper();
 
@@ -45,11 +45,10 @@ namespace OnlineExamUI.Commands.Subjects
                 viewModel.CurrentSituation = (int)Situation.NORMAL;
                 viewModel.Subjects.Remove(viewModel.SelectedSubject);
 
-
                 List<SubjectModel> modelList = viewModel.Subjects.ToList();
                 EnumerationUtil.Enumerate(modelList, no - 1);
                 viewModel.Subjects = new ObservableCollection<SubjectModel>(modelList);
-               
+
                 viewModel.SelectedSubject = null;
                 viewModel.CurrentSubject = new SubjectModel();
             }

@@ -50,9 +50,6 @@ namespace OnlineExamUI.Commands.Subjects
                     viewModel.SelectedSubject = null;
                     viewModel.CurrentSubject = new SubjectModel();
                     viewModel.CurrentSituation = (int)Situation.NORMAL;
-                   
-                   
-
                 }
             }
         }
