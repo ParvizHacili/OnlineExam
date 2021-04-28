@@ -39,6 +39,8 @@ namespace OnlineExamUI.Commands.MainPage
 
             SubjectsViewModel subjectsViewModel = new SubjectsViewModel();
 
+            subjectsViewModel.AllSubjects = subjectModels;
+
             SubjectsControl subjectsControl = new SubjectsControl();
 
             subjectsControl.DataContext = subjectsViewModel;

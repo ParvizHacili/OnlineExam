@@ -7,6 +7,7 @@ using OnlineExamUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace OnlineExamUI.Commands.Subjects
 {
@@ -38,14 +39,20 @@ namespace OnlineExamUI.Commands.Subjects
                     {
                         DB.SubjectRepository.Update(subject);
 
-                        viewModel.Subjects[viewModel.CurrentSubject.No - 1] = viewModel.CurrentSubject;
+                        SubjectModel updatedModel = viewModel.AllSubjects.FirstOrDefault(x => x.ID == viewModel.CurrentSubject.ID);
+                        int updatedIndex= viewModel.AllSubjects.IndexOf(updatedModel);
+
+                        viewModel.AllSubjects[updatedIndex] = viewModel.CurrentSubject;
                     }
                     else
                     {
                         viewModel.CurrentSubject.ID= DB.SubjectRepository.Add(subject);
                         viewModel.CurrentSubject.No = viewModel.Subjects.Count + 1;
-                        viewModel.Subjects.Add(viewModel.CurrentSubject);
+
+                        viewModel.AllSubjects.Add(viewModel.CurrentSubject);
                     }
+
+                    viewModel.UpdateDataFiltered();
 
                     viewModel.SelectedSubject = null;
                     viewModel.CurrentSubject = new SubjectModel();

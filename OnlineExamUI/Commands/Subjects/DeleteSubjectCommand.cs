@@ -47,7 +47,8 @@ namespace OnlineExamUI.Commands.Subjects
 
                 List<SubjectModel> modelList = viewModel.Subjects.ToList();
                 EnumerationUtil.Enumerate(modelList, no - 1);
-                viewModel.Subjects = new ObservableCollection<SubjectModel>(modelList);
+                viewModel.AllSubjects = modelList;
+                viewModel.UpdateDataFiltered();
 
                 viewModel.SelectedSubject = null;
                 viewModel.CurrentSubject = new SubjectModel();

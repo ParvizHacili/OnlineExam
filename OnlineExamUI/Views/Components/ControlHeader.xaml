@@ -12,6 +12,6 @@
             <ColumnDefinition  Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBlock  Height="30" Grid.Column="0" FontSize="18" Background="Firebrick" TextAlignment="Center" FontWeight="Medium" Text="{Binding Path=Header}"/>
-        <Button Content="Ana Səhifə"  Height="30" Grid.Column="1"  FontSize="20" FontFamily="Bold" />
+        <Button Content="Ana Səhifə"  Height="30" Grid.Column="1"  FontSize="20" FontFamily="Bold" Command="{Binding Path=ReturnMainWindow}" />
     </Grid>
 </UserControl>

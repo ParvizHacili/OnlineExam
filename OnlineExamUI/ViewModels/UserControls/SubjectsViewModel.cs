@@ -1,7 +1,9 @@
-﻿using OnlineExamUI.Commands.Subjects;
+﻿using OnlineExamUI.Commands.MainPage;
+using OnlineExamUI.Commands.Subjects;
 using OnlineExamUI.Enums;
 using OnlineExamUI.Models;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -50,16 +52,40 @@ namespace Exam.ViewModels.UserControls
             }
         }
 
-        private ObservableCollection<SubjectModel> _subjects;
-        public ObservableCollection<SubjectModel> Subjects
+        private List<SubjectModel> allSubjects;
+        public List<SubjectModel> AllSubjects
         {
-            get => _subjects;
+            get => allSubjects;
             set
             {
-                _subjects = value;
+                allSubjects = value;
+                OnPropertyChanged(nameof(AllSubjects));
+            }
+        }
+
+        private ObservableCollection<SubjectModel> subjects;
+        public ObservableCollection<SubjectModel> Subjects
+        {
+            get => subjects;
+            set
+            {
+                subjects = value;
                 OnPropertyChanged(nameof(Subjects));
             }
         }
+
+        private string searchText = string.Empty;
+        public string SearchText
+        {
+            get => searchText;
+            set
+            {
+                searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                UpdateDataFiltered();           
+            }
+        }
+
 
         #endregion
 
@@ -73,9 +99,28 @@ namespace Exam.ViewModels.UserControls
 
         #endregion
 
-        #region private methods
+        #region  methods
 
-       
+        public void UpdateDataFiltered()
+        {
+            List<SubjectModel> filteredSubjects = null;
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                filteredSubjects = AllSubjects;
+            }
+            else
+            {
+                string lowerSearchText = SearchText.ToLower();
+                filteredSubjects = AllSubjects.Where(x => x.Name.ToLower().Contains(lowerSearchText)).ToList();
+            }
+
+            Subjects.Clear();
+            foreach (var item in filteredSubjects)
+            {
+                Subjects.Add(item);
+            }
+        }
+
 
         #endregion
     }
