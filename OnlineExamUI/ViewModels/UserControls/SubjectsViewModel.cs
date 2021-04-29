@@ -97,6 +97,8 @@ namespace Exam.ViewModels.UserControls
 
         public DeleteSubjectCommand Delete => new DeleteSubjectCommand(this);
 
+        public ExcelExportSubjectCommand ExportExcel => new ExcelExportSubjectCommand(this);
+
         #endregion
 
         #region  methods

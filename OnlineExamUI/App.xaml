@@ -189,13 +189,13 @@
             </Style.Triggers>
         </Style>
 
-        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButton}" x:Key="btnExcel">
+        <Style  TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButton}" x:Key="btnExcel">
             <Setter Property="Content" Value="Excel"/>
             <Setter Property="Width" Value="70"/>
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Command" Value="{Binding ExportExcel}"/>
-            <Setter Property="Background" Value="#FF008306"/>
+            <Setter Property="Background" Value="Green"/>
         </Style>
 
         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButton}" x:Key="btnPdf">
