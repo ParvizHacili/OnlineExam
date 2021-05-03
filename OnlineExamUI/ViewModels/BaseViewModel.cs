@@ -15,7 +15,7 @@ namespace OnlineExamUI.ViewModels
 
         public abstract class BaseWindowViewModel : BaseViewModel
         {
-            public System.Windows.Window Window;
+            public Window Window;
         }
 
         public abstract class BaseControlViewModel : BaseViewModel

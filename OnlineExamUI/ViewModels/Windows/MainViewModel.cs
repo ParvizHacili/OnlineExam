@@ -1,4 +1,5 @@
-﻿using OnlineExamUI.Commands.MainPage;
+﻿using OnlineExamUI.Commands;
+using OnlineExamUI.Commands.MainPage;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,7 @@ namespace OnlineExamUI.ViewModels.Windows
     public class MainViewModel : BaseWindowViewModel
     {
         public OpenSubjectsCommand OpenSubjects => new OpenSubjectsCommand(this);
-
+        public OpenExamsCommand OpenExams => new OpenExamsCommand(this);
+        public OpenUsersCommand OpenUsers => new OpenUsersCommand(this);
     }
 }

@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using static OnlineExamUI.ViewModels.BaseViewModel;
+using System.Windows;
+using OnlineExamUI.Views;
+using OnlineExamUI.ViewModels;
 
 namespace Exam.ViewModels.UserControls
 {
@@ -17,11 +20,11 @@ namespace Exam.ViewModels.UserControls
         {
 
         }
-
+      
         #region Properties
 
         public override string Header => "Fənlər";
-
+        
         private SubjectModel currentSubject = new SubjectModel();
         public SubjectModel CurrentSubject
         {
@@ -33,6 +36,7 @@ namespace Exam.ViewModels.UserControls
                 OnPropertyChanged(nameof(CurrentSubject));
             }
         }
+
 
         private SubjectModel selectedSubject;
         public SubjectModel SelectedSubject
@@ -98,6 +102,10 @@ namespace Exam.ViewModels.UserControls
         public DeleteSubjectCommand Delete => new DeleteSubjectCommand(this);
 
         public ExcelExportSubjectCommand ExportExcel => new ExcelExportSubjectCommand(this);
+
+        public ReturnMainWindowCommand ReturnMainWindow => new ReturnMainWindowCommand(this);
+       
+
 
         #endregion
 

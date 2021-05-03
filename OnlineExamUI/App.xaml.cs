@@ -20,7 +20,7 @@ namespace OnlineExamUI
         {
             MainWindow = new StartWindow();
             MainWindow.Show();
-
+            
 
             LoginViewModel viewModel = new LoginViewModel();
 

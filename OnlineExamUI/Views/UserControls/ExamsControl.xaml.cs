@@ -1,9 +1,5 @@
-﻿using OnlineExamUI.Models;
-using OnlineExamUI.ViewModels.UserControls;
-using OnlineExamUI.Views.UserControls;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,20 +8,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OnlineExamUI.Views
+namespace OnlineExamUI.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ExamsControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ExamsControl : UserControl
     {
-        public MainWindow()
+        public ExamsControl()
         {
             InitializeComponent();
         }
-
-     
     }
 }

@@ -19,9 +19,9 @@ namespace OnlineExamUI.Commands
             this.viewModel = viewModel;
         }
 
+
         public override void Execute(object parameter)
         {
-
             User user = DB.UserRepository.Get(viewModel.Username);
 
             if (user != null)

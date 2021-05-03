@@ -3,7 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:OnlineExamUI.Views"
+        xmlns:local="clr-namespace:OnlineExamUI.Views" 
+        xmlns:windows="clr-namespace:OnlineExamUI.ViewModels.Windows" 
+        xmlns:usercontrols="clr-namespace:OnlineExamUI.ViewModels.UserControls"
+        d:DataContext="{d:DesignInstance Type=windows:MainViewModel}"
         mc:Ignorable="d"
         Title="Online İmtahan" Height="500" Width="1000" Background="DarkOrange">
     <Window.Resources>
@@ -71,6 +74,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Button Style="{DynamicResource RoundedButtonStyle}" Grid.Row="0" Content="Fənlər" FontSize="40" Foreground="Red"  Height="70" Width="400"  Margin="20"
@@ -79,18 +83,25 @@
                 Command="{Binding OpenSubjects}">
             </Button>
 
-            <Button Style="{DynamicResource RoundedButtonStyle}" Grid.Row="1" Content="İmtahanlar" FontSize="40" Foreground="Red" Height="70" Width="400"  Margin="20"
+            <Button  Style="{DynamicResource RoundedButtonStyle}" Grid.Row="1" Content="İmtahanlar" FontSize="40" Foreground="Red" Height="70" Width="400"  Margin="20"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+                VerticalAlignment="Center"
+                Command="{Binding OpenExams}">
             </Button>
 
             <Button Style="{DynamicResource RoundedButtonStyle}" Grid.Row="2" Content="Suallar" FontSize="40" Foreground="Red" Height="70" Width="400"  Margin="20"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center">
-
+                VerticalAlignment="Center"
+                    Command="{Binding OpenQuestions }">
+            </Button>
+            
+            <Button Style="{DynamicResource RoundedButtonStyle}" Grid.Row="3" Content="İstifadəçilər" FontSize="40" Foreground="Red" Height="70" Width="400"  Margin="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                    Command="{Binding OpenUsers}">
             </Button>
 
-            <Button Style="{DynamicResource RoundedButtonStyle}" Grid.Row="3"  FontSize="40"  Width="490" Height="70"
+            <Button Style="{DynamicResource RoundedButtonStyle}" Grid.Row="4"  FontSize="40"  Width="490" Height="70"
                 Content="İmtahan Ver" Foreground="Green"  Margin="20"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">

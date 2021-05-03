@@ -26,8 +26,8 @@ namespace OnlineExamUI.Commands.MainPage
 
             List<Subject> subjects = DB.SubjectRepository.Get();
             List<SubjectModel> subjectModels = new List<SubjectModel>();
-            SubjectMapper mapper = new SubjectMapper();
 
+            SubjectMapper mapper = new SubjectMapper();
             for(int i=0;i<subjects.Count;i++)
             {
                 Subject subject = subjects[i];

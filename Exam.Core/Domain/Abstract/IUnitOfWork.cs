@@ -9,5 +9,6 @@ namespace Exam.Core.Domain.Abstract
         bool CheckServer();
         public IUserRepository UserRepository { get; }
         public ISubjectRepository SubjectRepository { get; }
+        public IExamRepository ExamRepository { get; } 
     }
 }
