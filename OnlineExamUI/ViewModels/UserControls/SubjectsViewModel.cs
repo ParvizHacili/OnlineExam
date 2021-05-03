@@ -2,15 +2,11 @@
 using OnlineExamUI.Commands.Subjects;
 using OnlineExamUI.Enums;
 using OnlineExamUI.Models;
-using System;
-using System.Linq;
+using OnlineExamUI.ViewModels.Windows;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
+using System.Linq;
 using static OnlineExamUI.ViewModels.BaseViewModel;
-using System.Windows;
-using OnlineExamUI.Views;
-using OnlineExamUI.ViewModels;
 
 namespace Exam.ViewModels.UserControls
 {
@@ -20,7 +16,10 @@ namespace Exam.ViewModels.UserControls
         {
 
         }
-      
+
+        public MainViewModel MainVM;
+        public ReturnMainMenuCommand ReturnMainWindow => new ReturnMainMenuCommand(MainVM);
+
         #region Properties
 
         public override string Header => "Fənlər";
@@ -102,10 +101,6 @@ namespace Exam.ViewModels.UserControls
         public DeleteSubjectCommand Delete => new DeleteSubjectCommand(this);
 
         public ExcelExportSubjectCommand ExportExcel => new ExcelExportSubjectCommand(this);
-
-        public ReturnMainWindowCommand ReturnMainWindow => new ReturnMainWindowCommand(this);
-       
-
 
         #endregion
 

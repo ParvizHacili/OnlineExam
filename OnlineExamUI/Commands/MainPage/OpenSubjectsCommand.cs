@@ -23,22 +23,23 @@ namespace OnlineExamUI.Commands.MainPage
 
         public override void Execute(object parameter)
         {
-
             List<Subject> subjects = DB.SubjectRepository.Get();
             List<SubjectModel> subjectModels = new List<SubjectModel>();
 
             SubjectMapper mapper = new SubjectMapper();
-            for(int i=0;i<subjects.Count;i++)
+            
+            for (int i = 0; i < subjects.Count; i++)
             {
                 Subject subject = subjects[i];
-               SubjectModel model= mapper.Map(subject);
+                SubjectModel model = mapper.Map(subject);
                 model.No = i + 1;
                 subjectModels.Add(model);
             }
+
             EnumerationUtil.Enumerate(subjectModels);
 
             SubjectsViewModel subjectsViewModel = new SubjectsViewModel();
-
+            subjectsViewModel.MainVM = mainViewModel;
             subjectsViewModel.AllSubjects = subjectModels;
 
             SubjectsControl subjectsControl = new SubjectsControl();
@@ -50,7 +51,6 @@ namespace OnlineExamUI.Commands.MainPage
             
             mainWindow.GrdCenter.Children.Clear();
             mainWindow.GrdCenter.Children.Add(subjectsControl);
-
         }
     }
 }
