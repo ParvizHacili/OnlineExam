@@ -9,6 +9,7 @@ namespace OnlineExamUI.ViewModels.Windows
 {
     public class MainViewModel : BaseWindowViewModel
     {
+        public ReturnMainMenuCommand ReturnMainWindow => new ReturnMainMenuCommand(this);
         public OpenSubjectsCommand OpenSubjects => new OpenSubjectsCommand(this);
         public OpenExamsCommand OpenExams => new OpenExamsCommand(this);
         public OpenUsersCommand OpenUsers => new OpenUsersCommand(this);

@@ -17,8 +17,6 @@ namespace Exam.ViewModels.UserControls
 
         }
 
-        public MainViewModel MainVM;
-        public ReturnMainMenuCommand ReturnMainWindow => new ReturnMainMenuCommand(MainVM);
 
         #region Properties
 

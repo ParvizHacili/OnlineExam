@@ -39,7 +39,6 @@ namespace OnlineExamUI.Commands.MainPage
             EnumerationUtil.Enumerate(subjectModels);
 
             SubjectsViewModel subjectsViewModel = new SubjectsViewModel();
-            subjectsViewModel.MainVM = mainViewModel;
             subjectsViewModel.AllSubjects = subjectModels;
 
             SubjectsControl subjectsControl = new SubjectsControl();
