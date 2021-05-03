@@ -53,8 +53,6 @@ namespace OnlineExamUI.Commands.Exams
                         viewModel.AllExams.Add(viewModel.CurrentExam);
                     }
 
-                    //viewModel.UpdateDataFiltered();
-
                     viewModel.SelectedExam = null;
                     viewModel.CurrentExam = new ExamModel();
                     viewModel.CurrentSituation = (int)Situation.NORMAL;

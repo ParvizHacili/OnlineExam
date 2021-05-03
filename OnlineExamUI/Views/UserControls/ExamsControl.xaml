@@ -16,7 +16,6 @@
 
             <StackPanel Grid.Row="0" >
                 <components:ControlHeader/>
-                <!--<components:ErrorDialog Height="0" x:Name="ErrorDialog"/>-->
                 <Grid Background="LightGray" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
@@ -30,7 +29,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1">
-                            <ComboBox Height="25" Width="250" HorizontalAlignment="Left" FontSize="15" Margin="110 5" ItemsSource="{Binding Path=CurrentExam.SubjectModel.ID}" />
+                            <TextBox Height="25" Width="250" HorizontalAlignment="Left" FontSize="15" Margin="110 5" Text="{Binding Path=CurrentExam.SubjectModel.ID}" />
                             <TextBox Height="25" Width="250" HorizontalAlignment="Left" FontSize="15" Margin="110 5" Text="{Binding Path=CurrentExam.ExamType}"/>
                             <TextBox Height="25" Width="250" HorizontalAlignment="Left" FontSize="15" Margin="110 5" Text="{Binding Path=CurrentExam.Note}"/>
                         </StackPanel>

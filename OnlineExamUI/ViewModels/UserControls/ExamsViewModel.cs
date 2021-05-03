@@ -48,14 +48,6 @@ namespace OnlineExamUI.ViewModels.UserControls
             get => currentExam;
             set
             {
-                //ComboBox comboBox = new ComboBox();
-                //SubjectModel subjectModel = new SubjectModel();
-                //List<SubjectsViewModel> subjectsViewModel = new List<SubjectsViewModel>();
-
-                //foreach (var item in subjectsViewModel)
-                //{
-                //    comboBox.Items.Add(subjectModel.Name);
-                //}
                 currentExam = value;
                 OnPropertyChanged(nameof(CurrentExam));
             }
@@ -80,7 +72,6 @@ namespace OnlineExamUI.ViewModels.UserControls
             {
                 searchText = value;
                 OnPropertyChanged(nameof(SearchText));
-                //UpdateDataFiltered();
             }
         }
 
@@ -94,9 +85,5 @@ namespace OnlineExamUI.ViewModels.UserControls
         public ExcelExporterExamCommand ExportExcel => new ExcelExporterExamCommand(this);
         #endregion
 
-        public void UpdateDataFiltered()
-        {
-            
-        }
     }
 }

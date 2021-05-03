@@ -1,4 +1,5 @@
 ﻿using OnlineExamUI.Helpers;
+using OnlineExamUI.Mappers;
 using OnlineExamUI.Models;
 using OnlineExamUI.ViewModels.UserControls;
 using OnlineExamUI.ViewModels.Windows;
@@ -22,16 +23,9 @@ namespace OnlineExamUI.Commands.MainPage
         public override void Execute(object parameter)
         {
             List<ExamModel> examModels = new List<ExamModel>();
-           //SubjectMapper mapper = new SubjectMapper();
+            ExamMapper mapper = new ExamMapper();
 
-            //for (int i = 0; i < subjects.Count; i++)
-            //{
-            //    Subject subject = subjects[i];
-            //    SubjectModel model = mapper.Map(subject);
-            //    model.No = i + 1;
-            //    subjectModels.Add(model);
-            //}
-           EnumerationUtil.Enumerate(examModels);
+            EnumerationUtil.Enumerate(examModels);
 
             ExamsViewModel examsViewModel = new ExamsViewModel();
 
