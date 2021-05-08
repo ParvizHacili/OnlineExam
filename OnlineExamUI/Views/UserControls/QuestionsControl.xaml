@@ -4,6 +4,107 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OnlineExamUI.Views.UserControls" 
-             mc:Ignorable="d" >
+             xmlns:components="clr-namespace:OnlineExamUI.Views.Components" 
+             xmlns:usercontrols="clr-namespace:OnlineExamUI.ViewModels.UserControls" 
+             d:DataContext="{d:DesignInstance Type=usercontrols:QuestionsViewModel}"
+             mc:Ignorable="d" Width="auto" Height="auto" >
+    <Border Background="DarkGray" BorderThickness="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
+            <StackPanel Grid.Row="0">
+                <components:ControlHeader/>
+                <Grid Background="LightGray" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" Style="{StaticResource grdForm}" Margin="0 0 30 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Height="25" FontSize="15" HorizontalAlignment="Left" Margin="5">Fənn:</TextBlock>
+                            <TextBlock Height="25" FontSize="15" HorizontalAlignment="Left" Margin="5">İmtahan Növü:</TextBlock>
+                            <TextBlock Height="25" Margin="5" FontSize="15" HorizontalAlignment="Left">Sual:</TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <ComboBox ItemsSource="{Binding Path=Subjects}" DisplayMemberPath="Name"
+                                      SelectedItem="{Binding Path=CurrentQuestion.Subject}"
+                                      SelectedValue="{Binding Path=CurrentQuestion.Subject.ID}" SelectedValuePath="ID"
+                                      FontSize="15" Width="250" Height="25" HorizontalAlignment="Left" Margin="5"/>
+                            <ComboBox ItemsSource="{Binding Path=Exams}" DisplayMemberPath="ExamType" 
+                                      SelectedItem="{Binding Path=CurrentQuestion.Exam}"
+                                      SelectedValue="{Binding Path=CurrentQuestion.Exam.ID}" SelectedValuePath="ID"
+                                      FontSize="15" Width="250" Height="25" HorizontalAlignment="Left" Margin="5"/>
+                            <TextBox Text="{Binding CurrentQuestion.Question}" Height="90" HorizontalAlignment="Left" Width="250" FontSize="15" Margin="5" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Height="25" Margin="5" FontSize="15" HorizontalAlignment="Left" >A:</TextBlock>
+                            <TextBlock Height="25" Margin="5" FontSize="15" HorizontalAlignment="Left" >B:</TextBlock>
+                            <TextBlock Height="25" Margin="5" FontSize="15" HorizontalAlignment="Left" >C:</TextBlock>
+                            <TextBlock Height="25" Margin="5" FontSize="15" HorizontalAlignment="Left" >D:</TextBlock>
+                            <TextBlock Height="25" Margin="5" FontSize="15" HorizontalAlignment="Left" >E:</TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="3">
+                            <TextBox Text="{Binding CurrentQuestion.VariantA}" Height="25" Width="250" FontSize="15" Margin="5" />
+                            <TextBox Text="{Binding CurrentQuestion.VariantB}" Height="25" Width="250" FontSize="15" Margin="5" />
+                            <TextBox Text="{Binding CurrentQuestion.VariantC}" Height="25" Width="250" FontSize="15" Margin="5" />
+                            <TextBox Text="{Binding CurrentQuestion.VariantD}" Height="25" Width="250" FontSize="15" Margin="5" />
+                            <TextBox Text="{Binding CurrentQuestion.VariantE}" Height="25" Width="250" FontSize="15" Margin="5" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="4">
+                            <TextBlock Height="25" Margin="5" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" >Doğru cavab:</TextBlock>
+                            <TextBox Text="{Binding CurrentQuestion.TrueAnswer}" Height="25" Width="80" FontSize="15" VerticalAlignment="Center" Margin="5 0" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Grid.Column="1">
+                        <components:FormButtons/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            
+
+            <ListView ItemsSource="{Binding Questions}" 
+                      SelectedItem="{Binding Path=SelectedQuestion,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  x:Name="MainList" Grid.Row="1" Style="{StaticResource listViewCustom}">
+                <ListView.View>
+                    <GridView>
+                        
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=No}" Header="No" Width="25"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Subject.Name}" Header="Fənn" Width="190"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Exam.ExamType}" Header="İmtahan Növü" Width="200"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Question}" Header="Sual" Width="300"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=VariantA}" Header="Variant A" Width="120"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=VariantB}" Header="Variant B" Width="120"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=VariantC}" Header="Variant C" Width="120"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=VariantD}" Header="Variant D" Width="120"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=VariantE}" Header="Variant E" Width="120"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=TrueAnswer}" Header="Doğru cavab" Width="120"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Grid Grid.Row="2" Style="{StaticResource grdSearch}">
+                <DockPanel>
+                    <components:Search/>
+                    <components:Excel/>
+                </DockPanel>
+            </Grid>
+        </Grid>
+    </Border>
 </UserControl>

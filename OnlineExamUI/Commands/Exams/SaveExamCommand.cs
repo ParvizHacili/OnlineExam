@@ -1,6 +1,7 @@
 ﻿using Exam.Core;
 using Exam.Core.Domain.Entities;
 using OnlineExamUI.Enums;
+using OnlineExamUI.Helpers;
 using OnlineExamUI.Mappers;
 using OnlineExamUI.Models;
 using OnlineExamUI.ViewModels.UserControls;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace OnlineExamUI.Commands.Exams
 {
@@ -29,36 +31,48 @@ namespace OnlineExamUI.Commands.Exams
             }
             else
             {
-                if(viewModel.CurrentSituation==(int)Situation.ADD || viewModel.CurrentSituation==(int)Situation.EDIT)
+                if (viewModel.CurrentSituation == (int)Situation.ADD || viewModel.CurrentSituation == (int)Situation.EDIT)
                 {
-
-                    ExamMapper examMapper = new ExamMapper();
-                    Exam1 exam = examMapper.Map(viewModel.CurrentExam);
-
-                    exam.Creator = Kernel.CurrentUser;
-                    if (exam.ID != 0)
+                    // STEP 1. Validate model data
+                    if (viewModel.CurrentExam.IsValid(out string message))
                     {
-                        DB.ExamRepository.Update(exam);
+                        // STEP 2. Create BranchEntity from BranchModel
+                        ExamMapper examMapper = new ExamMapper();
+                        Exam1 exam = examMapper.Map(viewModel.CurrentExam);
+                        exam.Creator = Kernel.CurrentUser;
 
-                        ExamModel updatedModel = viewModel.AllExams.FirstOrDefault(x => x.ID == viewModel.CurrentExam.ID);
-                        int updatedIndex = viewModel.AllExams.IndexOf(updatedModel);
+                        // STEP 3. Save BranchEntity to db
+                        if (exam.ID != 0)
+                        {
+                            DB.ExamRepository.Update(exam);
 
-                        viewModel.AllExams[updatedIndex] = viewModel.CurrentExam;
+                            ExamModel updatedModel = viewModel.AllExams.FirstOrDefault(x => x.ID == viewModel.CurrentExam.ID);
+                            int updatedIndex = viewModel.AllExams.IndexOf(updatedModel);
+
+                            viewModel.AllExams[updatedIndex] = viewModel.CurrentExam;
+                        }
+                        else
+                        {
+                            viewModel.CurrentExam.ID = DB.ExamRepository.Add(exam);
+
+                            viewModel.CurrentExam.No = viewModel.Exams.Count + 1;
+
+                            viewModel.AllExams.Add(viewModel.CurrentExam);
+                        }
+
+                        viewModel.UpdateDataFiltered();
+
+                        // STEP 4. Set Situation to Normal
+                        viewModel.SelectedExam = null;
+                        viewModel.CurrentExam = new ExamModel();
+                        viewModel.CurrentSituation = (int)Situation.NORMAL;
                     }
                     else
-                    {
-                        viewModel.CurrentExam.ID = DB.ExamRepository.Add(exam);
-                        viewModel.CurrentExam.No = viewModel.Exams.Count + 1;
-
-                        viewModel.AllExams.Add(viewModel.CurrentExam);
+                    { 
+                        MessageBox.Show(message, UIMessages.ValidationCommonMessage, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-
-                    viewModel.SelectedExam = null;
-                    viewModel.CurrentExam = new ExamModel();
-                    viewModel.CurrentSituation = (int)Situation.NORMAL;
                 }
             }
-
         }
         
     }

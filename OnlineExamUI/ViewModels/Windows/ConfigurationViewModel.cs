@@ -11,7 +11,7 @@ namespace OnlineExamUI.ViewModels.Windows
     {
         public ConfigurationViewModel()
         {
-            //DbSettings = new DbSettings();
+           
         }
         public DbSettings DbSettings { get; set; }
     }

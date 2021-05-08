@@ -10,6 +10,7 @@ namespace OnlineExamUI.Models
         [Export(Name ="Fənnin Adı",ColumnNo =1)]
         public string Name { get; set; }
 
+
         public SubjectModel Clone()
         {
             SubjectModel cloneModel = new SubjectModel();
@@ -20,5 +21,6 @@ namespace OnlineExamUI.Models
 
             return cloneModel;
         }
+
     }
 }

@@ -10,8 +10,11 @@ namespace OnlineExamUI.Mappers
     {
         public override Exam1 Map(ExamModel examModel)
         {
+            if (examModel == null)
+                return null;
+
             Exam1 exam = new Exam1();
-            exam.Subject.ID = examModel.SubjectModel.ID;
+            exam.ID = examModel.ID;
             exam.ExamType = examModel.ExamType;
             exam.Note = examModel.Note;
 
@@ -20,8 +23,11 @@ namespace OnlineExamUI.Mappers
 
         public override ExamModel Map(Exam1 exam)
         {
+            if (exam == null)
+                return null;
+
             ExamModel examModel = new ExamModel();
-            examModel.SubjectModel.ID = exam.Subject.ID;
+            examModel.ID = exam.ID;
             examModel.ExamType = exam.ExamType;
             examModel.Note = exam.Note;
 

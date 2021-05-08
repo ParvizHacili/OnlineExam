@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:OnlineExamUI.Views.UserControls" xmlns:components="clr-namespace:OnlineExamUI.Views.Components" xmlns:usercontrols="clr-namespace:OnlineExamUI.ViewModels.UserControls" d:DataContext="{d:DesignInstance Type=usercontrols:ExamsViewModel}"
+             xmlns:local="clr-namespace:OnlineExamUI.Views.UserControls"
+             xmlns:components="clr-namespace:OnlineExamUI.Views.Components" 
+             xmlns:usercontrols="clr-namespace:OnlineExamUI.ViewModels.UserControls"
+            
              mc:Ignorable="d" 
               d:DesignHeight="450" d:DesignWidth="900">
     <Border Background="DarkGray" BorderThickness="5">
@@ -23,13 +26,11 @@
 
                     <Grid Grid.Column="0" Style="{StaticResource grdForm}" Margin="0 0 30 0">
                         <StackPanel Grid.Column="0">
-                            <TextBlock Height="22" FontSize="15"  Margin="5">Fənnin Adı:</TextBlock>
                             <TextBlock Height="22" FontSize="15"  Margin="5">İmtahan Növü:</TextBlock>
                             <TextBlock Height="22" FontSize="15"  Margin="10">Qeyd:</TextBlock>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1">
-                            <TextBox Height="25" Width="250" HorizontalAlignment="Left" FontSize="15" Margin="110 5" Text="{Binding Path=CurrentExam.SubjectModel.ID}" />
                             <TextBox Height="25" Width="250" HorizontalAlignment="Left" FontSize="15" Margin="110 5" Text="{Binding Path=CurrentExam.ExamType}"/>
                             <TextBox Height="25" Width="250" HorizontalAlignment="Left" FontSize="15" Margin="110 5" Text="{Binding Path=CurrentExam.Note}"/>
                         </StackPanel>
@@ -41,13 +42,12 @@
             </StackPanel>
 
             <ListView x:Name="MainList" 
-                      SelectedItem="{Binding Path=SelectedExam,Mode=TwoWay}"
+                      SelectedItem="{Binding Path=SelectedExam,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       ItemsSource="{Binding Path=Exams}" 
                       Grid.Row="1" Style="{StaticResource listViewCustom}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=No}" Header="No" Width="50"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=SubjectModel}" Header="Fənnin Adı" Width="250"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=ExamType}" Header="İmtahan Növü" Width="300"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Note}" Header="Qeyd" Width="300"/>
                     </GridView>

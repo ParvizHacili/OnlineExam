@@ -1,6 +1,7 @@
 ﻿using Exam.Core.Domain.Entities;
 using Exam.ViewModels.UserControls;
 using OnlineExamUI.Commands.Exams;
+using OnlineExamUI.Enums;
 using OnlineExamUI.Models;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace OnlineExamUI.ViewModels.UserControls
             }
         }
 
-        private ExamModel currentExam;
+        private ExamModel currentExam= new ExamModel();
         public ExamModel CurrentExam 
         {
             get => currentExam;
@@ -61,6 +62,13 @@ namespace OnlineExamUI.ViewModels.UserControls
             {
                 selectedExam = value;
                 OnPropertyChanged(nameof(SelectedExam));
+
+                CurrentExam = SelectedExam?.Clone();
+
+                if (SelectedExam != null)
+                {
+                    CurrentSituation = (int)Situation.SELECTED;
+                }
             }
         }
 
@@ -72,6 +80,7 @@ namespace OnlineExamUI.ViewModels.UserControls
             {
                 searchText = value;
                 OnPropertyChanged(nameof(SearchText));
+                UpdateDataFiltered();
             }
         }
 
@@ -85,5 +94,27 @@ namespace OnlineExamUI.ViewModels.UserControls
         public ExcelExporterExamCommand ExportExcel => new ExcelExporterExamCommand(this);
         #endregion
 
+
+        public void UpdateDataFiltered()
+        {
+            List<ExamModel> filteredExams = null;
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                filteredExams = AllExams;
+            }
+            else
+            {
+                string lowerSearchText = SearchText.ToLower();
+                filteredExams = AllExams.Where(x =>
+                 (x.Note != null && x.Note.ToLower().Contains(lowerSearchText)) ||
+                        x.ExamType.ToLower().Contains(lowerSearchText)).ToList();
+
+            }
+            exams.Clear();
+            foreach (var item in filteredExams)
+            {
+                exams.Add(item);
+            }
+        }
     }
 }

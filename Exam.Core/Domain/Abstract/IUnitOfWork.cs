@@ -10,5 +10,6 @@ namespace Exam.Core.Domain.Abstract
         public IUserRepository UserRepository { get; }
         public ISubjectRepository SubjectRepository { get; }
         public IExamRepository ExamRepository { get; } 
+        public IQuestionRepository QuestionRepository { get; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using OnlineExamUI.Helpers;
+﻿using Exam.Core.Domain.Entities;
+using OnlineExamUI.Helpers;
 using OnlineExamUI.Mappers;
 using OnlineExamUI.Models;
 using OnlineExamUI.ViewModels.UserControls;
@@ -22,23 +23,20 @@ namespace OnlineExamUI.Commands.MainPage
 
         public override void Execute(object parameter)
         {
-            List<ExamModel> examModels = new List<ExamModel>();
-            ExamMapper mapper = new ExamMapper();
-
-            EnumerationUtil.Enumerate(examModels);
-
             ExamsViewModel examsViewModel = new ExamsViewModel();
 
+            List<ExamModel> examModels = DataProvider.GetExams();
+            EnumerationUtil.Enumerate(examModels);
 
             examsViewModel.AllExams = examModels;
+            examsViewModel.Exams = new ObservableCollection<ExamModel>(examModels);
+            examsViewModel.CurrentExam = new ExamModel();
 
             ExamsControl examsControl = new ExamsControl();
 
             examsControl.DataContext = examsViewModel;
-            examsViewModel.Exams = new ObservableCollection<ExamModel>(examModels);
 
             MainWindow mainWindow = (MainWindow)mainViewModel.Window;
-
             mainWindow.GrdCenter.Children.Clear();
             mainWindow.GrdCenter.Children.Add(examsControl);
         }

@@ -6,7 +6,6 @@ namespace Exam.Core.Domain.Entities
 {
     public class Exam1 :BaseEntity
     {
-        public Subject Subject { get; set; }
         public string ExamType { get; set; }
         public string Note { get; set; }
     }

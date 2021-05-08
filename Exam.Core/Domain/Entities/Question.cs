@@ -7,6 +7,8 @@ namespace Exam.Core.Domain.Entities
     public class Question :BaseEntity
     {
         public Exam1 Exam { get; set; }
+        public Subject Subject { get; set; }
+
         public string Questionn { get; set; }
         public string VariantA { get; set; }
         public string VariantB { get; set; }

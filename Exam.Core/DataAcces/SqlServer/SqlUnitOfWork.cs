@@ -20,6 +20,8 @@ namespace Exam.Core.DataAcces.SqlServer
 
         public IExamRepository ExamRepository => new SqlExamRepository(context);
 
+        public IQuestionRepository QuestionRepository => new SqlQuestionRepository(context);
+
         public bool CheckServer()
         {
             try

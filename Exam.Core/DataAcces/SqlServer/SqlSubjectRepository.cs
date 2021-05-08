@@ -75,6 +75,8 @@ namespace Exam.Core.DataAcces.SqlServer
                 }
             }
         }
+
+
         private void AddParameters(SqlCommand command,Subject subject)
         {
             command.Parameters.AddWithValue("@Name", subject.Name);
