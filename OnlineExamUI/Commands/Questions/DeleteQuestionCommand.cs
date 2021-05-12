@@ -50,7 +50,7 @@ namespace OnlineExamUI.Commands.Questions
                 EnumerationUtil.Enumerate(modelList, no - 1);
                 viewModel.AllQuestions = modelList;
 
-                //viewModel.updatedatafiltered
+                viewModel.UpdateDataFiltered();
 
                 viewModel.SelectedQuestion = null;
                 viewModel.CurrentQuestion = new QuestionModel();

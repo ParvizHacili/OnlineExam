@@ -131,6 +131,20 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButton}" x:Key="btnFinish">
+            <Setter Property="Content" Value="İmtahanı Bitir!"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButton}" x:Key="btnStart">
+            <Setter Property="Content" Value="Başla"/>
+            <Setter Property="Command" Value="{Binding Start}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentCondition}" Value="2">
+                    <Setter Property="Content" Value="Davam Et"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButton}" x:Key="btnAdd">
             <Setter Property="Content" Value="Əlavə et"/>
             <Setter Property="Command" Value="{Binding Save}"/>

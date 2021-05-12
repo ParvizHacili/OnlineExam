@@ -11,4 +11,10 @@ namespace OnlineExamUI.Enums
         EDIT = 3,
         SELECTED = 4
     }
+
+    public enum Condition
+    {
+        Normal=1,
+        Continue=2
+    }
 }

@@ -1,0 +1,35 @@
+﻿<Window x:Class="OnlineExamUI.Views.Components.ChooseExam"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OnlineExamUI.Views.Components"
+             mc:Ignorable="d" 
+             Height="200" Width="800" Background="SlateBlue"  WindowStyle="None" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"  >
+    <Border CornerRadius="30">
+        <Grid>
+            <WrapPanel VerticalAlignment="Center">
+                <ComboBox  Height="25" Width="300" Margin="30 0"
+                       ItemsSource="{Binding Path=Subjects}" DisplayMemberPath="Name"
+                       SelectedItem="{Binding Path=CurrentQuestion.Subject}"
+                       SelectedValue="{Binding Path=CurrentQuestion.Subject.ID}"
+                       SelectedValuePath="ID"></ComboBox>
+
+                <ComboBox  Height="25" Width="300"  Margin="30"
+                       ItemsSource="{Binding Path=Exams}" DisplayMemberPath="ExamType" 
+                       SelectedItem="{Binding Path=CurrentQuestion.Exam}"
+                       SelectedValue="{Binding Path=CurrentQuestion.Exam.ID}"
+                       SelectedValuePath="ID"></ComboBox>
+            </WrapPanel>
+
+            <TextBlock FontSize="40" HorizontalAlignment="Center" Foreground="Black" Text="Fənni və İmtahan Növünü Seçin">
+            </TextBlock>
+
+            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Button  FontSize="30" Content="Seç" Height="50" Width="200" Margin="50 0" Click="ChooseClick"></Button>
+                <Button FontSize="30" Content="İmtina" Height="50" Width="200" Margin="50 0" Click="RejectClick" ></Button>
+            </WrapPanel>
+        </Grid>
+    </Border>
+</Window>

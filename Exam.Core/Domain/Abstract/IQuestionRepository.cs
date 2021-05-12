@@ -10,5 +10,6 @@ namespace Exam.Core.Domain.Abstract
         int Add(Question question);
         List<Question> Get();
         bool Update(Question question);
+        List<Question>GetByID(int ID);
     }
 }

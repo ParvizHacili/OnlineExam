@@ -82,6 +82,7 @@ namespace OnlineExamUI.ViewModels.UserControls
             {
                 searchText = value;
                 OnPropertyChanged(nameof(SearchText));
+                UpdateDataFiltered();
             }
         }
 
@@ -95,5 +96,34 @@ namespace OnlineExamUI.ViewModels.UserControls
         public ExcelExporterQuestionCommand ExportExcel => new ExcelExporterQuestionCommand(this);
 
         #endregion
+
+        public void UpdateDataFiltered()
+        {
+            List<QuestionModel> filteredQuestions = null;
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                filteredQuestions = AllQuestions;
+            }
+            else
+            {
+                string lowerSearchText = SearchText.ToLower();
+                filteredQuestions = AllQuestions.Where(x =>
+                        x.Exam.ExamType.ToLower().Contains(lowerSearchText) ||
+                        x.Question.ToLower().Contains(lowerSearchText) ||
+                        x.VariantA.ToLower().Contains(lowerSearchText) ||
+                        x.VariantB.ToLower().Contains(lowerSearchText) ||
+                        x.VariantC.ToLower().Contains(lowerSearchText) ||
+                        x.VariantD.ToLower().Contains(lowerSearchText) ||
+                        x.VariantE.ToLower().Contains(lowerSearchText) ||
+                        x.TrueAnswer.ToLower().Contains(lowerSearchText) ||
+                        x.Subject.Name.ToLower().Contains(lowerSearchText)).ToList();
+            }
+
+            Questions.Clear();
+            foreach (var item in filteredQuestions)
+            {
+                Questions.Add(item);
+            }
+        }
     }
 }

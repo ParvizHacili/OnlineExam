@@ -14,5 +14,6 @@ namespace OnlineExamUI.ViewModels.Windows
         public OpenExamsCommand OpenExams => new OpenExamsCommand(this);
         public OpenUsersCommand OpenUsers => new OpenUsersCommand(this);
         public OpenQuestionsCommand OpenQuestions => new OpenQuestionsCommand(this);
+        public OpenOnlineExamCommand OpenOnlineExam => new OpenOnlineExamCommand(this);
     }
 }

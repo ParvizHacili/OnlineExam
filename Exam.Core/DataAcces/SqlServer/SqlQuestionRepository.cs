@@ -70,32 +70,29 @@ namespace Exam.Core.DataAcces.SqlServer
 
                     while(reader.Read())
                     {
-                        Question question = new Question();
+                        Question question = GetFromReader(reader);               
+                        questions.Add(question);
+                    }
+                    return questions;
+                }
+            }
+        }
 
-                        question.ID = reader.GetInt32("ID");
+        public List<Question> GetByID(int ID)
+        {
+            using (SqlConnection connection = new SqlConnection(context.ConnectionString))
+            {
+                connection.Open();
+                string cmdText = "Select * from Questions where IsDeleted=0 order by NEWID()";
 
-                        question.Exam = new Exam1()
-                        {
-                            ID = reader.GetInt32("ExamID"),
-                            ExamType=reader.GetString("ExamType"),
-                        };
+                using (SqlCommand command = new SqlCommand(cmdText, connection))
+                {
+                    List<Question> questions = new List<Question>();
+                    SqlDataReader reader = command.ExecuteReader();
 
-                        question.Questionn = reader.GetString("Question");
-                        question.VariantA = reader.GetString("VariantA");
-                        question.VariantB = reader.GetString("VariantB");
-                        question.VariantC = reader.GetString("VariantC");
-                        question.VariantD = reader.GetString("VariantD");
-                        question.VariantD = reader.GetString("VariantD");
-                        question.VariantE = reader.GetString("VariantE");
-                        question.TrueAnswer = reader.GetString("TrueAnswer");
-
-                        question.Subject = new Subject()
-                        {
-                            ID = reader.GetInt32("SubjectID"),
-                            Name = reader.GetString("SubjectName")
-
-                        };
-
+                    while (reader.Read())
+                    {
+                        Question question = GetFromReader(reader);
                         questions.Add(question);
                     }
                     return questions;
@@ -112,13 +109,44 @@ namespace Exam.Core.DataAcces.SqlServer
             command.Parameters.AddWithValue("@VariantB", question.VariantB);
             command.Parameters.AddWithValue("@VariantC", question.VariantC);
             command.Parameters.AddWithValue("@VariantD", question.VariantD);
-            command.Parameters.AddWithValue("@VariantE", question.VariantE);  
-            command.Parameters.AddWithValue("@TrueAnswer", question.TrueAnswer);  
+            command.Parameters.AddWithValue("@VariantE", question.VariantE);
+            command.Parameters.AddWithValue("@TrueAnswer", question.TrueAnswer);
             command.Parameters.AddWithValue("@CreatorID", question.Creator.ID);
             command.Parameters.AddWithValue("@LastModifiedDate", question.LastModifiedDate);
-            command.Parameters.AddWithValue("@IsDeleted", question.IsDeleted);  
-            command.Parameters.AddWithValue("@SubjectID", question.Subject?.ID ?? (object)DBNull.Value); 
-            
+            command.Parameters.AddWithValue("@IsDeleted", question.IsDeleted);
+            command.Parameters.AddWithValue("@SubjectID", question.Subject?.ID ?? (object)DBNull.Value);
+
+        }
+
+        private Question GetFromReader(SqlDataReader reader)
+        {
+            Question question = new Question();
+
+            question.ID = reader.GetInt32("ID");
+
+            question.Exam = new Exam1()
+            {
+                ID = reader.GetInt32("ExamID"),
+                ExamType = reader.GetString("ExamType"),
+            };
+
+            question.Questionn = reader.GetString("Question");
+            question.VariantA = reader.GetString("VariantA");
+            question.VariantB = reader.GetString("VariantB");
+            question.VariantC = reader.GetString("VariantC");
+            question.VariantD = reader.GetString("VariantD");
+            question.VariantD = reader.GetString("VariantD");
+            question.VariantE = reader.GetString("VariantE");
+            question.TrueAnswer = reader.GetString("TrueAnswer");
+
+            question.Subject = new Subject()
+            {
+                ID = reader.GetInt32("SubjectID"),
+                Name = reader.GetString("SubjectName")
+
+            };
+
+            return question;
         }
     }
 }

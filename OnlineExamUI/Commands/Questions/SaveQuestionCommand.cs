@@ -33,7 +33,6 @@ namespace OnlineExamUI.Commands.Questions
             {
                 if (viewModel.CurrentSituation == (int)Situation.ADD || viewModel.CurrentSituation == (int)Situation.EDIT)
                 {
-
                     QuestionMapper mapper = new QuestionMapper();
                     Question question = mapper.Map(viewModel.CurrentQuestion);
 
