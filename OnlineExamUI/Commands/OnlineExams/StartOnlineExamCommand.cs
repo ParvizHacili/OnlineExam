@@ -23,8 +23,21 @@ namespace OnlineExamUI.Commands.OnlineExams
 
         }
 
+        public bool test = true;
         public override void Execute(object parameter)
         {
+            if(test)
+            {
+                viewModel.CurrentQuestion++;
+                test = false;
+            }
+            else
+            {
+                viewModel.CurrentQuestion--;
+                test = true;
+            }
+
+            return;
             
             OnlineExamsViewModel onlineExamsViewModel = new OnlineExamsViewModel();
             ChooseExam chooseExam = new ChooseExam();
