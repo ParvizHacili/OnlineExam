@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace OnlineExamWeb.Models
 {
-    public class SubjectModel :BaseModel
+    public abstract class BaseModel
     {
-        public string Name { get; set; }
+        public int ID { get; set; }
+
+        public int No { get; set; }
     }
 }
