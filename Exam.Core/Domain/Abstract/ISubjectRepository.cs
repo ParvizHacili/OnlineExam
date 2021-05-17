@@ -10,5 +10,6 @@ namespace Exam.Core.Domain.Abstract
         int Add(Subject subject);
         List<Subject> Get();
         bool Update(Subject subject);
+        Subject Get(int ID);
     }
 }

@@ -56,6 +56,30 @@ namespace Exam.Core.DataAcces.SqlServer
             }
         }
 
+        public Subject Get(int ID)
+        {
+            using (SqlConnection connection = new SqlConnection(context.ConnectionString))
+            {
+                connection.Open();
+
+                string cmdtext = @"Select * from Subjects where IsDeleted=0 and ID=@ID";
+
+                using (SqlCommand command = new SqlCommand(cmdtext, connection))
+                {
+                    command.Parameters.AddWithValue("@ID", ID);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        Subject subject = GetFromReader(reader);
+
+                        return subject;
+                    }
+                    return null;
+                }
+            }
+        }
+
         public bool Update(Subject subject)
         {
             using (SqlConnection connection = new SqlConnection(context.ConnectionString))

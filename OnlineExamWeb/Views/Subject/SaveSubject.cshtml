@@ -1,0 +1,42 @@
+﻿@using OnlineExamWeb.Models
+@model SubjectModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Branches</title>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/layout.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/css/commonDesign.css">
+    <link rel="stylesheet" href="~/css/warninganimation.css">
+</head>
+<body>
+    <form asp-controller="Subject" asp-action="SaveSubject" method="post" class="form-group">
+        <div class="form-group">
+            <label asp-for="Name" for="name" class="mr-sm-2">Name:</label>
+            <input asp-for="Name" class="form-control mb-2 mr-sm-2" />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary bgupdate">Add</button>
+        </div>
+    </form>
+</body>
+</html>

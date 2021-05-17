@@ -102,7 +102,7 @@
                             <a class="btn btn-primary bgupdate" asp-controller="Subject" asp-action="SaveSubject" id="myBtnAdd"><i class='fas fa-download'></i> Add</a>
 
                             <!-- The Modal -->
-                            <div class="modal fade" id="DelModal">
+                            <div class="modal fade" ID="DelModal">
                                 <div class="modal-dialog">
                                     <!-- Modal content -->
                                     <div class="modal-content">
@@ -117,7 +117,7 @@
 
                                         <div class="modal-footer">
                                             <form asp-controller="Subject" asp-action="Delete" method="post">
-                                                <input asp-for="DeletedId" id="deletedId" hidden />
+                                                <input asp-for="DeletedID" id="DeletedID" hidden />
                                                 <button type="submit" class="btn btn-primary bgupdate">Yes</button>
                                                 <button type="button" class="btn btn-danger bgdelete" data-dismiss="modal">No</button>
                                             </form>
@@ -188,8 +188,8 @@
             var table = $('#example').dataTable();
         });
 
-        function ShowDeleteModal(id) {
-            $("#deletedId").val(id);
+        function ShowDeleteModal(ID) {
+            $("#deletedID").val(ID);
         }
     </script>
 </body>
