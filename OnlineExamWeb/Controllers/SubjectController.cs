@@ -3,14 +3,10 @@ using Exam.Core.Domain.Abstract;
 using Exam.Core.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using OnlineExamUI.Helpers;
-using OnlineExamUI.ViewModels.UserControls;
 using OnlineExamWeb.Mappers;
 using OnlineExamWeb.Models;
 using OnlineExamWeb.ViewModel;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OnlineExamWeb.Controllers
 {
@@ -36,7 +32,7 @@ namespace OnlineExamWeb.Controllers
                 subjectViewModel.Subjects.Add(subjectModel);
             }
 
-            //EnumerationUtil.Enumerate(subjectViewModel.Subjects);
+            EnumerationUtil.Enumerate(subjectViewModel.Subjects);
 
             return View(subjectViewModel);
         }

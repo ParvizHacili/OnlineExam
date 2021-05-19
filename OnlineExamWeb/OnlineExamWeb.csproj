@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Exam.Core\Exam.Core.csproj" />
-    <ProjectReference Include="..\OnlineExamUI\OnlineExamUI.csproj" />
   </ItemGroup>
 
 </Project>
