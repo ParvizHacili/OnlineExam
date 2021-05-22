@@ -5,18 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineExamUI.Helpers;
 using OnlineExamWeb.Mappers;
 using OnlineExamWeb.Models;
-using OnlineExamWeb.ViewModel;
+using OnlineExamWeb.ViewModels;
 using System.Collections.Generic;
 
 namespace OnlineExamWeb.Controllers
 {
-    public class SubjectController : Controller
+    public class SubjectController : BaseController
     {
-        private readonly IUnitOfWork DB;
-        public SubjectController(IUnitOfWork db)
-        {
-            DB = db;
-        }
+        public SubjectController(IUnitOfWork db):base(db) { }
 
         public IActionResult Index()
         {
@@ -26,9 +22,9 @@ namespace OnlineExamWeb.Controllers
 
             SubjectMapper subjectMapper = new SubjectMapper();
 
-            foreach(var subjec in subjects)
+            foreach(var subject in subjects)
             {
-                var subjectModel = subjectMapper.Map(subjec);
+                var subjectModel = subjectMapper.Map(subject);
                 subjectViewModel.Subjects.Add(subjectModel);
             }
 

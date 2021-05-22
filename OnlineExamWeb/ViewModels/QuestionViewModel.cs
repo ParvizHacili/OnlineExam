@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OnlineExamWeb.ViewModel
+namespace OnlineExamWeb.ViewModels
 {
-    public class SubjectViewModel
+    public class QuestionViewModel
     {
-        public List<SubjectModel> Subjects { get; set; } = new List<SubjectModel>();
+        public List<QuestionModel> Questions { get; set; } = new List<QuestionModel>();
+
         public int DeletedID { get; set; }
     }
 }

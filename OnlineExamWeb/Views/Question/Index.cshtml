@@ -1,8 +1,8 @@
 ﻿@using OnlineExamWeb.ViewModels;
-@model SubjectViewModel;
+@model QuestionViewModel;
 
 @{
-    Layout = "~/Views/Shared/Layout.cshtml"; 
+    Layout = "~/Views/Shared/Layout.cshtml"; ;
 }
 
 <table id="example" class="table table-striped table-bordered tbl" style="width:100%">
@@ -10,17 +10,33 @@
         <tr>
             <th>No</th>
             <th>Fənnin Adı</th>
+            <th>İmtahan Növü</th>
+            <th>Sual</th>
+            <th>VariantA</th>
+            <th>VariantB</th>
+            <th>VariantC</th>
+            <th>VariantD</th>
+            <th>VariantE</th>
+            <th>Düzgün Cavab</th>
             <th></th>
             <th></th>
         </tr>
     </thead>
 
     <tbody>
-        @foreach (var item in Model.Subjects)
+        @foreach (var item in Model.Questions)
         {
             <tr>
                 <td>@item.No</td>
-                <td>@item.Name</td>
+                <td>@item.Subject?.Name</td>
+                <td>@item.Exam?.ExamType</td>
+                <td>@item.Question</td>
+                <td>@item.VariantA </td>
+                <td>@item.VariantB </td>
+                <td>@item.VariantC </td>
+                <td>@item.VariantD </td>
+                <td>@item.VariantE </td>
+                <td>@item.TrueAnswer </td>
                 <td><a asp-controller="Question" asp-action="SaveQuestion" asp-route-id="@item.ID" class="btn btn-primary bgupdate" id="btnUpdate"><i class='fas fa-download'></i> Update</a></td>
                 <td><button class="btn btn-danger bgdelete" onclick="ShowDeleteModal(@item.ID)" data-toggle="modal" data-id="@item.ID" data-target="#DelModal" id="btnDel"><i class='fas fa-trash-alt'></i> Delete</button></td>
             </tr>
@@ -30,6 +46,14 @@
         <tr>
             <th>No</th>
             <th>Fənnin Adı</th>
+            <th>İmtahan Növü</th>
+            <th>Sual</th>
+            <th>VariantA</th>
+            <th>VariantB</th>
+            <th>VariantC</th>
+            <th>VariantD</th>
+            <th>VariantE</th>
+            <th>Düzgün Cavab</th>
             <th></th>
             <th></th>
         </tr>
@@ -53,7 +77,7 @@
             </div>
 
             <div class="modal-footer">
-                <form asp-controller="Subject" asp-action="Delete" method="post">
+                <form asp-controller="Book" asp-action="Delete" method="post">
                     <input asp-for="DeletedID" id="DeletedID" hidden />
                     <button type="submit" class="btn btn-primary bgupdate">Yes</button>
                     <button type="button" class="btn btn-danger bgdelete" data-dismiss="modal">No</button>
