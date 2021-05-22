@@ -60,9 +60,13 @@ namespace OnlineExamWeb.Controllers
         [HttpPost]
         public IActionResult SaveSubject(SubjectModel subjectModel)
         {
+            if(!ModelState.IsValid)
+            {
+                return Content("Məlmatlar düzgün daxil edilməyib");
+            }
             SubjectMapper subjectMapper = new SubjectMapper();
             Subject subject = subjectMapper.Map(subjectModel);
-            subject.Creator = Kernel.CurrentUser;
+            subject.Creator = Startup.CurrentUser;
 
             if(subject.ID!=0)
             {
@@ -87,7 +91,7 @@ namespace OnlineExamWeb.Controllers
                 return Content("Fənn Tapılmadı");
             }
 
-            subject.Creator = Kernel.CurrentUser;
+            subject.Creator = Startup.CurrentUser;
             subject.IsDeleted = true;
 
             DB.SubjectRepository.Update(subject);

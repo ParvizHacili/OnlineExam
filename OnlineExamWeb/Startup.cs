@@ -1,4 +1,5 @@
 using Exam.Core;
+using Exam.Core.Domain.Entities;
 using Exam.Core.Enums;
 using Exam.Core.Factories;
 using Microsoft.AspNetCore.Builder;
@@ -16,22 +17,25 @@ namespace OnlineExamWeb
 {
     public class Startup
     {
+        public static User CurrentUser;
         private readonly IConfiguration Configuration;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            CurrentUser = new User() { ID = 1 };
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
-            Kernel.DB = DbFactory.Create(ServerType.SqlServer, connectionString);
-            Kernel.CurrentUser = Kernel.DB.UserRepository.Get("admin");
+
 
             services.AddScoped(serviceProvider =>
             {
-                return Kernel.DB;
+                string connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+                return DbFactory.Create(ServerType.SqlServer, connectionString);
             });
 
             services.AddControllersWithViews();
