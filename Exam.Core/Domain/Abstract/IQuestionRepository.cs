@@ -11,5 +11,6 @@ namespace Exam.Core.Domain.Abstract
         List<Question> Get();
         bool Update(Question question);
         List<Question>GetByID(int ID);
+        public Question FindByID(int ID);
     }
 }

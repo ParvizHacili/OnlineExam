@@ -3,6 +3,8 @@
 
 @{
     Layout = null;
+
+    string text = Model.ID != 0 ? "Update" : "Add";
 }
 
 <!DOCTYPE html>
@@ -10,7 +12,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Branches</title>
+    <title>Save Subject</title>
 
     <link rel="stylesheet" type="text/css" media="screen" href="~/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="~/css/layout.css" />
@@ -41,7 +43,7 @@
             <span class="text-danger" asp-validation-for="Name"></span>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary bgupdate">Add</button>
+            <button type="submit" class="btn btn-primary bgupdate">@text</button>
         </div>
     </form>
 </body>

@@ -50,7 +50,7 @@ namespace OnlineExamWeb.Controllers
 
                 return View(subjectModel);
             }
-            return View();
+            return View(new SubjectModel());
         }
 
         [HttpPost]

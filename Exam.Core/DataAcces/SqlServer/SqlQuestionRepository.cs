@@ -100,6 +100,34 @@ namespace Exam.Core.DataAcces.SqlServer
             }
         }
 
+        public Question FindByID(int ID)
+        {
+            using (SqlConnection connection = new SqlConnection(context.ConnectionString))
+            {
+                connection.Open();
+
+                string cmdText = @"select q.* ,s.Name as SubjectName, e.ExamType as ExamType
+                                from  Questions as q inner join Exams as e on e.ID=q.ExamID 
+                                inner join Subjects as s  on  s.ID=q.SubjectID where q.IsDeleted=0 
+                                and q.ID=@ID";
+
+                using (SqlCommand command = new SqlCommand(cmdText, connection))
+                {
+                    command.Parameters.AddWithValue("@ID", ID);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        Question question = GetFromReader(reader);
+
+                        return question;
+                    }
+
+                    return null;
+                }
+            }
+        }
 
         private void AddParameters(SqlCommand command, Question question)
         {

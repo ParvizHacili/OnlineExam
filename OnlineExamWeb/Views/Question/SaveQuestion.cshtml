@@ -1,0 +1,96 @@
+﻿@using OnlineExamWeb.Models
+@model QuestionModel
+
+@{
+    Layout = null;
+
+    string text = Model.ID != 0 ? "Update" : "Add";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Save Question</title>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/layout.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/css/commonDesign.css">
+    <link rel="stylesheet" href="~/css/warninganimation.css">
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <form asp-controller="Question" asp-action="SaveQuestion" method="post" class="form-group">
+        <div class="form-group">
+            <label asp-for="Subject" for="Subject" class="mr-sm-2">Fənn:</label>
+
+            <select class="form-control  mb-2 mr-sm-2"
+                    asp-for="Subject.ID" asp-items="Model.Subjects"></select>
+            <span class="text-danger" asp-validation-for="Subject"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Exam" for="Exam" class="mr-sm-2">İmtahan Növü:</label>
+
+            <select class="form-control  mb-2 mr-sm-2"
+                    asp-for="Exam.ID" asp-items="Model.Exams"></select>
+            <span class="text-danger" asp-validation-for="Exam"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Question" for="Question" class="mr-sm-2">Sual:</label>
+            <input asp-for="Question" class="form-control mb-2 mr-sm-2" />
+            <span class="text-danger" asp-validation-for="Question"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="VariantA" for="discount" class="mr-sm-2">VariantA:</label>
+            <input asp-for="VariantA" class="form-control mb-2 mr-sm-2" />
+            <span class="text-danger" asp-validation-for="VariantA"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="VariantB" for="discount" class="mr-sm-2">VariantB:</label>
+            <input asp-for="VariantB" class="form-control mb-2 mr-sm-2" />
+            <span class="text-danger" asp-validation-for="VariantB"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="VariantC" for="discount" class="mr-sm-2">VariantC:</label>
+            <input asp-for="VariantC" class="form-control mb-2 mr-sm-2" />
+            <span class="text-danger" asp-validation-for="VariantC"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="VariantD" for="discount" class="mr-sm-2">VariantD:</label>
+            <input asp-for="VariantD" class="form-control mb-2 mr-sm-2" />
+            <span class="text-danger" asp-validation-for="VariantD"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="VariantE" for="discount" class="mr-sm-2">VariantE:</label>
+            <input asp-for="VariantE" class="form-control mb-2 mr-sm-2" />
+            <span class="text-danger" asp-validation-for="VariantE"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="TrueAnswer" for="discount" class="mr-sm-2">Düzgün Cavab:</label>
+            <input asp-for="TrueAnswer" class="form-control mb-2 mr-sm-2" />
+            <span class="text-danger" asp-validation-for="TrueAnswer"></span>
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary bgupdate">@text</button>
+        </div>
+    </form>
+</body>
+</html>
