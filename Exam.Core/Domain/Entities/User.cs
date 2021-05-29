@@ -18,5 +18,7 @@ namespace Exam.Core.Domain.Entities
         public DateTime BirthDate { get; set; }        
         public bool CanOperateCrm { get; set; }
         public UserType Type { get; set; }
+
+        public List<UserRole> UserRoles { get; set; } = new List<UserRole>();
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Exam.Core;
 using Exam.Core.Domain.Abstract;
 using Exam.Core.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlineExamUI.Helpers;
 using OnlineExamWeb.Mappers;
@@ -10,12 +12,17 @@ using System.Collections.Generic;
 
 namespace OnlineExamWeb.Controllers
 {
+    [Authorize(Roles="SA,A")]
     public class SubjectController : BaseController
     {
-        public SubjectController(IUnitOfWork db):base(db) { }
+        public SubjectController(IUnitOfWork db, UserManager<User> userManager) : base(db, userManager) { }
 
+        string message = "Əməliyyat uğurla həyata keçdi!";
+
+        [AllowAnonymous] ///
         public IActionResult Index()
         {
+            ViewBag.Message = TempData["Message"];
             List<Subject> subjects = DB.SubjectRepository.Get();
 
             SubjectViewModel subjectViewModel = new SubjectViewModel();
@@ -58,22 +65,23 @@ namespace OnlineExamWeb.Controllers
         {
             if(!ModelState.IsValid)
             {
-                return Content("Məlmatlar düzgün daxil edilməyib");
+                return Content("Məlumatlar düzgün daxil edilməyib");
             }
             SubjectMapper subjectMapper = new SubjectMapper();
             Subject subject = subjectMapper.Map(subjectModel);
-            subject.Creator = Startup.CurrentUser;
+            subject.Creator = CurrentUser;
 
             if(subject.ID!=0)
             {
                 DB.SubjectRepository.Update(subject);
-
+                TempData["Message"] = message;
             }
             else
             {
                 DB.SubjectRepository.Add(subject);
             }
 
+            TempData["Message"] = message;
             return RedirectToAction("Index");
         }
 
@@ -87,11 +95,12 @@ namespace OnlineExamWeb.Controllers
                 return Content("Fənn Tapılmadı");
             }
 
-            subject.Creator = Startup.CurrentUser;
+            subject.Creator = CurrentUser; 
             subject.IsDeleted = true;
 
             DB.SubjectRepository.Update(subject);
 
+            TempData["Message"] = message;
             return RedirectToAction("Index");
         }
     }

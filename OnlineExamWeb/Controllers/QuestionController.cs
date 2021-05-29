@@ -8,12 +8,14 @@ using System.Collections.Generic;
 using OnlineExamWeb.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using Microsoft.AspNetCore.Identity;
 
 namespace OnlineExamWeb.Controllers
 {
     public class QuestionController : BaseController
     {
-        public QuestionController(IUnitOfWork db) : base(db) { }
+        public QuestionController(IUnitOfWork db, UserManager<User> userManager) : base(db, userManager) { }
+        string message = "Əməliyyat uğurla həyata keçdi!";
 
         [HttpGet]
         public IActionResult Index()
@@ -85,11 +87,12 @@ namespace OnlineExamWeb.Controllers
             //}
             QuestionMapper questionMapper = new QuestionMapper();
             Question question = questionMapper.Map(questionModel);
-            question.Creator = Startup.CurrentUser;
+            question.Creator = CurrentUser;
 
             if(question.ID !=0)
             {
                 DB.QuestionRepository.Update(question);
+                TempData["Message"] = message;
             }
             else
             {
@@ -111,9 +114,11 @@ namespace OnlineExamWeb.Controllers
 
             question.LastModifiedDate = DateTime.Now;
             question.IsDeleted = true;
-            question.Creator = Startup.CurrentUser;
+            question.Creator = CurrentUser;
 
             DB.QuestionRepository.Update(question);
+
+            TempData["Message"] = message;
 
             return RedirectToAction("Index");
         }

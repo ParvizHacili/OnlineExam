@@ -5,9 +5,11 @@ using Exam.Core.Factories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OnlineExamWeb.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,28 +19,36 @@ namespace OnlineExamWeb
 {
     public class Startup
     {
-        public static User CurrentUser;
         private readonly IConfiguration Configuration;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            CurrentUser = new User() { ID = 1 };
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddTransient<IPasswordHasher<User>, CustomPasswordHasher>();
 
-
-            services.AddScoped(serviceProvider =>
+            services.AddSingleton(serviceProvider =>
             {
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
                 return DbFactory.Create(ServerType.SqlServer, connectionString);
             });
 
+            services.AddTransient<IUserStore<User>, UserStore>();
+            services.AddTransient<IRoleStore<Role>, RoleStore>();
+
+            services.AddIdentity<User, Role>();
+
             services.AddControllersWithViews();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.LoginPath = "/Account/Index";
+            });
 
         }
 
@@ -57,6 +67,9 @@ namespace OnlineExamWeb
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
