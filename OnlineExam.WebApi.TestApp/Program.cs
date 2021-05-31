@@ -10,7 +10,7 @@ namespace OnlineExam.WebApi.TestApp
         {
             Console.OutputEncoding = Encoding.UTF8;
 
-            WebApiClient webApiClient = new WebApiClient("http://localhost:40662");
+            WebApiClient webApiClient = new WebApiClient("http://localhost:40662/api");
 
             #region Authenticate Request
 
@@ -36,13 +36,14 @@ namespace OnlineExam.WebApi.TestApp
 
             #region GET Request
 
-            //var taskResult = webApiClient.GetSubjectsAsync();
-            //var subjectDtos = taskResult.Result;
+            var taskResult = webApiClient.GetSubjectsAsync();
 
-            //foreach (var subjectDto in subjectDtos)
-            //{
-            //    Console.WriteLine($"{subjectDto.ID} {subjectDto.Name}");
-            //}
+            var subjectDtos = taskResult.Result;
+
+            foreach (var subjectDto in subjectDtos)
+            {
+                Console.WriteLine($"{subjectDto.ID} {subjectDto.Name}");
+            }
 
             #endregion
 
