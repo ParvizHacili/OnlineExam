@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineExamWeb.Models
 {
-    public class ExamModel :BaseModel
+    public class ExamModel : BaseModel
     {
         [Required(ErrorMessage = "Imtahan növü mütləq daxil edilməlidir!")]
         [StringLength(50, ErrorMessage = "Imtahan növü 50 simvoldan çox ola bilməz!")]

@@ -10,6 +10,7 @@ using System;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using OnlineExamWeb.Helpers;
+using System.Text;
 
 namespace OnlineExamWeb.Controllers
 {
@@ -42,15 +43,14 @@ namespace OnlineExamWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult SaveQuestion(int ID)
+        public IActionResult SaveQuestion(int id)
         {
             QuestionModel questionModel = new QuestionModel();
 
-
-            if(ID!=0)
+            if (id != 0)
             {
-                Question question = DB.QuestionRepository.FindByID(ID);
-                if(question==null)
+                Question question = DB.QuestionRepository.FindByID(id);
+                if (question == null)
                 {
                     return Content("Sual Tapılmadı");
                 }
@@ -83,12 +83,20 @@ namespace OnlineExamWeb.Controllers
         [HttpPost]
         public IActionResult SaveQuestion(QuestionModel questionModel)
         {
-            //if (ModelState.IsValid == false)
-            //{
-            //    return Content("Model is invalid");
-            //}
+            if (ModelState.IsValid == false)
+            {
+                StringBuilder sb = new StringBuilder();
 
-            //commentsiz error atir
+                foreach (var value in ModelState.Values)
+                {
+                    foreach (var error in value.Errors)
+                    {
+                        sb.AppendLine(error.ErrorMessage);
+                    }
+                }
+
+                return Content(sb.ToString());
+            }
 
             QuestionMapper questionMapper = new QuestionMapper();
             Question question = questionMapper.Map(questionModel);

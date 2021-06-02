@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineExamWeb.Models
 {
-    public class QuestionModel :BaseModel
+    public class QuestionModel : BaseModel
     {
         [Required]
         public ExamModel Exam { get; set; }
@@ -33,7 +33,7 @@ namespace OnlineExamWeb.Models
         [Required(ErrorMessage = "Variant mütləq daxil edilməlidir!")]
         public string VariantE { get; set; }
 
-        [Required(ErrorMessage = "Düzgün avab variantı mütləq daxil edilməlidir!")]
+        [Required(ErrorMessage = "Düzgün cavab variantı mütləq daxil edilməlidir!")]
         public string TrueAnswer { get; set; }
 
         public List<SelectListItem> Subjects;
