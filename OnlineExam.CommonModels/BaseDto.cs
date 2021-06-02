@@ -4,8 +4,8 @@ using System.Text;
 
 namespace OnlineExam.CommonModels
 {
-   public class SubjectDto :BaseDto
+   public class BaseDto
     {
-        public string Name { get; set; }
+        public int ID { get; set; }
     }
 }

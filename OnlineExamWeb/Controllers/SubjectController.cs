@@ -4,7 +4,7 @@ using Exam.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using OnlineExamUI.Helpers;
+using OnlineExamWeb.Helpers;
 using OnlineExamWeb.Mappers;
 using OnlineExamWeb.Models;
 using OnlineExamWeb.ViewModels;
@@ -17,12 +17,10 @@ namespace OnlineExamWeb.Controllers
     {
         public SubjectController(IUnitOfWork db, UserManager<User> userManager) : base(db, userManager) { }
 
-        string message = "Əməliyyat uğurla həyata keçdi!";
-
-        [AllowAnonymous] ///
         public IActionResult Index()
         {
             ViewBag.Message = TempData["Message"];
+
             List<Subject> subjects = DB.SubjectRepository.Get();
 
             SubjectViewModel subjectViewModel = new SubjectViewModel();
@@ -65,8 +63,9 @@ namespace OnlineExamWeb.Controllers
         {
             if(!ModelState.IsValid)
             {
-                return Content("Məlumatlar düzgün daxil edilməyib");
+                return Content(UiMessages.WrongMessage);
             }
+
             SubjectMapper subjectMapper = new SubjectMapper();
             Subject subject = subjectMapper.Map(subjectModel);
             subject.Creator = CurrentUser;
@@ -74,14 +73,14 @@ namespace OnlineExamWeb.Controllers
             if(subject.ID!=0)
             {
                 DB.SubjectRepository.Update(subject);
-                TempData["Message"] = message;
+                TempData["Message"] = UiMessages.SuccesMessage;
             }
             else
             {
                 DB.SubjectRepository.Add(subject);
+                TempData["Message"] = UiMessages.SuccesMessage;
             }
 
-            TempData["Message"] = message;
             return RedirectToAction("Index");
         }
 
@@ -100,7 +99,7 @@ namespace OnlineExamWeb.Controllers
 
             DB.SubjectRepository.Update(subject);
 
-            TempData["Message"] = message;
+            TempData["Message"] = UiMessages.SuccesMessage;
             return RedirectToAction("Index");
         }
     }

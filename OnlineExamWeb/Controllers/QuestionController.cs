@@ -3,23 +3,26 @@ using Exam.Core.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using OnlineExamWeb.Mappers;
 using OnlineExamWeb.ViewModels;
-using OnlineExamUI.Helpers;
 using System.Collections.Generic;
 using OnlineExamWeb.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using OnlineExamWeb.Helpers;
 
 namespace OnlineExamWeb.Controllers
 {
+    [Authorize(Roles = "SA,A")]
     public class QuestionController : BaseController
     {
         public QuestionController(IUnitOfWork db, UserManager<User> userManager) : base(db, userManager) { }
-        string message = "Əməliyyat uğurla həyata keçdi!";
 
         [HttpGet]
         public IActionResult Index()
         {
+            ViewBag.Message = TempData["Message"];
+
             List<Question> questions = DB.QuestionRepository.Get();
 
             QuestionViewModel questionViewModel = new QuestionViewModel();
@@ -36,7 +39,6 @@ namespace OnlineExamWeb.Controllers
 
             return View(questionViewModel);
 
-            //error
         }
 
         [HttpGet]
@@ -85,6 +87,9 @@ namespace OnlineExamWeb.Controllers
             //{
             //    return Content("Model is invalid");
             //}
+
+            //commentsiz error atir
+
             QuestionMapper questionMapper = new QuestionMapper();
             Question question = questionMapper.Map(questionModel);
             question.Creator = CurrentUser;
@@ -92,13 +97,14 @@ namespace OnlineExamWeb.Controllers
             if(question.ID !=0)
             {
                 DB.QuestionRepository.Update(question);
-                TempData["Message"] = message;
+                TempData["Message"] = UiMessages.SuccesMessage;
             }
             else
             {
                 DB.QuestionRepository.Add(question);
-            }
+                TempData["Message"] = UiMessages.SuccesMessage;
 
+            }
             return RedirectToAction("Index");
         }
 
@@ -118,7 +124,7 @@ namespace OnlineExamWeb.Controllers
 
             DB.QuestionRepository.Update(question);
 
-            TempData["Message"] = message;
+            TempData["Message"] = UiMessages.SuccesMessage;
 
             return RedirectToAction("Index");
         }

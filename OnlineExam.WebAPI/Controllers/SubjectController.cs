@@ -37,7 +37,6 @@ namespace OnlineExam.WebAPI.Controllers
                     subjectDtos.Add(subjectDto);
                 }
 
-
                 return Ok(subjectDtos);
             }
             catch (Exception exc)
@@ -92,7 +91,6 @@ namespace OnlineExam.WebAPI.Controllers
                 else
                 {
                     DB.SubjectRepository.Update(subject);
-
                 }
 
                 return Ok(subject.ID);

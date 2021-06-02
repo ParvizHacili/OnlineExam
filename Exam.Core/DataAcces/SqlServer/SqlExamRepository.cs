@@ -48,29 +48,35 @@ namespace Exam.Core.DataAcces.SqlServer
 
                     while (reader.Read())
                     {
-                        Exam1 exam = new Exam1();
-                        exam.ID = reader.GetInt32("ID");
-
-                        exam.ExamType = reader.GetString("ExamType");
-
-                        if (reader["Note"] != DBNull.Value)
-                        {
-                            exam.Note = (string)reader["Note"];
-                        }
-                        if (!reader.IsDBNull("CreatorID"))
-                        {
-                            exam.Creator = new User()
-                            {
-                                ID = reader.GetInt32("ID")
-                            };
-                        }
-                        exam.LastModifiedDate = reader.GetDateTime("LastModifiedDate");
-                        exam.IsDeleted = reader.GetBoolean("IsDeleted");
-
-
+                        Exam1 exam = GetFromReader(reader);
                         exams.Add(exam);
-                 }
+                    }
+
                     return exams;
+                }
+            }
+        }
+
+        public Exam1 Get(int ID)
+        {
+            using(SqlConnection connection=new SqlConnection(context.ConnectionString))
+            {
+                connection.Open();
+
+                string cmdText = "Select * from Exams where IsDeleted=0 and ID=@ID";
+
+                using(SqlCommand command=new SqlCommand(cmdText,connection))
+                {
+                    command.Parameters.AddWithValue("@ID",ID);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if(reader.Read())
+                    {
+                        Exam1 exam = GetFromReader(reader);
+
+                        return exam;
+                    }
+                    return null;
                 }
             }
         }
@@ -80,10 +86,12 @@ namespace Exam.Core.DataAcces.SqlServer
             using (SqlConnection connection = new SqlConnection(context.ConnectionString))
             {
                 connection.Open();
+
                 string cmdText = @"Update Exams set Note=@Note,
                     LastModifiedDate=@LastModifiedDate,CreatorID=@CreatorID,
                     IsDeleted=@IsDeleted,
                     ExamType=@Examtype where ID=@ID";
+
                 using(SqlCommand command =new SqlCommand(cmdText,connection))
                 {
                     command.Parameters.AddWithValue("@ID", exam.ID);
@@ -105,12 +113,26 @@ namespace Exam.Core.DataAcces.SqlServer
             command.Parameters.AddWithValue("@ExamType", exam.ExamType ?? (object)DBNull.Value);
         }
 
-        //private Exam1 GetFromReader(SqlDataReader reader)
-        //{
-        //    Exam1 exam = new Exam1();
+        private Exam1 GetFromReader(SqlDataReader reader)
+        {
+            Exam1 exam = new Exam1();
 
-      
-        //    return exam;
-        //}
+            exam.ID = reader.GetInt32("ID");
+            exam.ExamType = reader.GetString("ExamType");
+            exam.LastModifiedDate = reader.GetDateTime("LastModifiedDate");
+
+            if (!reader.IsDBNull("CreatorID"))
+            {
+                exam.Creator = new User()
+                {
+                    ID = reader.GetInt32("ID")
+                };
+            }
+
+            exam.IsDeleted = reader.GetBoolean("IsDeleted");
+            exam.Note = reader.GetString("Note");
+
+            return exam;
+        }
     }
 }

@@ -15,25 +15,25 @@ namespace OnlineExamWeb.Models
         [Required]
         public SubjectModel Subject { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Sual mütləq daxil edilməlidir!")]
         public string Question { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Variant mütləq daxil edilməlidir!")]
         public string VariantA { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Variant mütləq daxil edilməlidir!")]
         public string VariantB { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Variant mütləq daxil edilməlidir!")]
         public string VariantC { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Variant mütləq daxil edilməlidir!")]
         public string VariantD { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Variant mütləq daxil edilməlidir!")]
         public string VariantE { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Düzgün avab variantı mütləq daxil edilməlidir!")]
         public string TrueAnswer { get; set; }
 
         public List<SelectListItem> Subjects;
